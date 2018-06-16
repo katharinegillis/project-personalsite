@@ -1,4 +1,4 @@
-image: node:carbon-alpine
+image: node:carbon
 
 pipelines:
   branches:
