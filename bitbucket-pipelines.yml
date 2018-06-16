@@ -1,0 +1,20 @@
+image: node:carbon-alpine
+
+pipelines:
+  branches:
+    master:
+      - step:
+        caches:
+          - node
+        script:
+          - yarn install
+          - yarn run encore production
+          - docker build -t registry.katiecordescodes.com/personalsite:latest .
+    develop:
+      - step:
+        caches:
+          - node
+        script:
+          - yarn install
+          - yarn run encore production
+          - docker build -t registry.katiecordescodes.com/personalsite:dev .
