@@ -4,17 +4,26 @@ pipelines:
   branches:
     master:
       - step:
-        caches:
-          - node
-        script:
-          - yarn install
-          - yarn run encore production
-          - docker build -t registry.katiecordescodes.com/personalsite:latest .
+          caches:
+            - node
+          script:
+            - yarn install
+            - yarn run encore production
+            - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+            - docker build -t registry.katiecordescodes.com/personalsite:latest .
+            - docker push registry.katiecordescodes.com/personalsite:latest
+            - ssh -t root@katiecordescodes.com ./docker-update.sh
+            deployment: production
     develop:
       - step:
-        caches:
-          - node
-        script:
-          - yarn install
-          - yarn run encore production
-          - docker build -t registry.katiecordescodes.com/personalsite:dev .
+          caches:
+            - node
+          script:
+            - yarn install
+            - yarn run encore production
+            - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+            - docker build -t registry.katiecordescodes.com/personalsite:dev .
+            - docker push registry.katiecordescodes.com/personalsite:dev
+            - ssh -t root@katiecordescodes.com ./docker-update.sh
+options:
+  docker: true
