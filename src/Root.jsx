@@ -3,9 +3,7 @@ import React from 'react';
 import Home from './pages/Home';
 
 const Root = () => (
-  <Home>
-    <p>Testing dev build.</p>
-  </Home>
+  <Home />
 );
 
 export default Root;

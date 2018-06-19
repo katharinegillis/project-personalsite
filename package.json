@@ -19,8 +19,9 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
+    "classnames": "^2.2.6",
+    "prop-types": "^15.6.1",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "prop-types": "^15.6.1"
+    "react-dom": "^16.4.1"
   }
 }

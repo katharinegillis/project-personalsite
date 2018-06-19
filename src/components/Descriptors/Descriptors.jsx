@@ -7,7 +7,7 @@ import DescriptorItem from './DescriptorItem/DescriptorItem';
 
 const Descriptors = ({ descriptors }) => (
   <div className="descriptors">
-    {descriptors.map(descriptor => <DescriptorItem descriptor={descriptor} />)}
+    {descriptors.map(descriptor => <DescriptorItem descriptor={descriptor} key={descriptor} />)}
   </div>
 );
 
