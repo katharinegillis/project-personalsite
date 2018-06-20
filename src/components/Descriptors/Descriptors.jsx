@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './descriptors.scss';
+import './Descriptors.scss';
 
-import DescriptorItem from './DescriptorItem/DescriptorItem';
+import DescriptorsItem from './DescriptorsItem/DescriptorsItem';
 
 const Descriptors = ({ descriptors }) => (
   <div className="descriptors">
-    {descriptors.map(descriptor => <DescriptorItem descriptor={descriptor} key={descriptor} />)}
+    {descriptors.map(descriptor => <DescriptorsItem descriptor={descriptor} key={descriptor} />)}
   </div>
 );
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './blurbtext.scss';
+import './BlurbText.scss';
 
 const BlurbText = ({ text }) => (
   <div className="blurb__text">

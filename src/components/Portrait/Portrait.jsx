@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './portrait.scss';
+import './Portrait.scss';
 
 const Portrait = ({ image }) => (
   <div className="portrait">

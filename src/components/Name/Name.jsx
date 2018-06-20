@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './name.scss';
+import './Name.scss';
 
 const Name = ({ name }) => (
   <div className="name">

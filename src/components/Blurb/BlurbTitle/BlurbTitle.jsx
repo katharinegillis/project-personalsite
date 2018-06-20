@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './blurbtitle.scss';
+import './BlurbTitle.scss';
 
 const BlurbTitle = ({ title }) => (
   <div className="blurb__title">

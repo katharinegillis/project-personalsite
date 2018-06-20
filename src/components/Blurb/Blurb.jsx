@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import './blurb.scss';
+import './Blurb.scss';
 
 import BlurbTitle from './BlurbTitle/BlurbTitle';
 import BlurbText from './BlurbText/BlurbText';

@@ -8,6 +8,7 @@ import Content from '../components/Content/Content';
 import Blurb from '../components/Blurb/Blurb';
 import GridContainer from '../components/GridContainer/GridContainer';
 import Projects from '../components/Projects/Projects';
+import Skills from '../components/Skills/Skills';
 
 const Home = () => (
   <div className="page">
@@ -24,6 +25,9 @@ const Home = () => (
         <Blurb theme="coding" title="Coding" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec neque in neque aliquam dignissim. Curabitur est elit, venenatis eget purus non, consequat venenatis dui. Nunc semper ante mi, eu tincidunt tellus dictum sit amet. Pellentesque blandit diam sit amet diam porta hendrerit. Morbi egestas enim augue, eu aliquam ligula pharetra sed. Nam placerat mattis lacus, eu pellentesque purus pulvinar a. Curabitur at luctus lacus. Mauris quis molestie turpis. Fusce quis urna in mi cursus imperdiet.">
           <GridContainer columns={8}>
             <Projects />
+          </GridContainer>
+          <GridContainer columns={4}>
+            <Skills title="Coding Skills" />
           </GridContainer>
         </Blurb>
       </Content>
