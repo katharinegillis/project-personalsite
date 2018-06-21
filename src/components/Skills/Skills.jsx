@@ -8,7 +8,13 @@ import Skill from '../Skill/Skill';
 const Skills = ({ title, skills }) => (
   <div className="skills">
     <SkillsTitle title={title} />
-    {skills.map(skill => <Skill title={skill.title} descriptor={skill.descriptor} percentage={skill.percentage} />)}
+    {skills.map(skill => (
+      <Skill
+        title={skill.title}
+        descriptor={skill.descriptor}
+        percentage={skill.percentage}
+      />
+    ))}
   </div>
 );
 
@@ -22,7 +28,7 @@ Skills.propTypes = {
 };
 
 Skills.defaultProps = {
-  skills: []
+  skills: [],
 };
 
 export default Skills;
