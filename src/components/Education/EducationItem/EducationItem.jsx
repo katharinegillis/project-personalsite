@@ -20,4 +20,4 @@ EducationItem.propTypes = {
   timeframe: PropTypes.string.isRequired,
 };
 
-export default EducationLocation;
+export default EducationItem;

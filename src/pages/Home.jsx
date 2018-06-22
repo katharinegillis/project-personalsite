@@ -9,6 +9,10 @@ import Blurb from '../components/Blurb/Blurb';
 import GridContainer from '../components/GridContainer/GridContainer';
 import Projects from '../components/Projects/Projects';
 import Skills from '../components/Skills/Skills';
+import Favourites from '../components/Favourites/Favourites';
+import Education from '../components/Education/Education';
+import Copyright from '../components/Copyright/Copyright';
+import Footer from '../components/Footer/Footer';
 
 const Home = () => (
   <div className="page">
@@ -30,8 +34,20 @@ const Home = () => (
             <Skills title="Coding Skills" />
           </GridContainer>
         </Blurb>
+        <GridContainer columns={4}>
+          <Education />
+        </GridContainer>
+        <GridContainer columns={4}>
+          <Favourites title="Favourite Shows" />
+        </GridContainer>
+        <GridContainer columns={4}>
+          <Favourites title="Favourite Music" />
+        </GridContainer>
       </Content>
     </GridContainer>
+    <Footer>
+      <Copyright author="Katie Cordes" startYear={2018} />
+    </Footer>
   </div>
 );
 
