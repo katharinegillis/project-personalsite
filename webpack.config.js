@@ -47,6 +47,6 @@ var config = Encore.getWebpackConfig();
 // Update the watch options to:
 // 1. Use polling in case the --watch is run on a Windows system (or WSL).
 // 2. Don't care about changes in the node_modules folder.
-config.watchOptions = { poll: true, ignored: /node_modules/ };
+//config.watchOptions = { poll: true, ignored: /node_modules/ };
 
 module.exports = config;
