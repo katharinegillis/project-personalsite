@@ -14,18 +14,20 @@ import Education from '../components/Education/Education';
 import Copyright from '../components/Copyright/Copyright';
 import Footer from '../components/Footer/Footer';
 
+import data from './Home.json';
+
 const Home = () => (
   <div className="page">
     <GridContainer columns={12}>
       <Header>
-        <Portrait image="/images/portrait.jpg" />
-        <Name name="firstname lastname" />
-        <Descriptors descriptors={['descriptor1', 'descriptor2']} />
+        <Portrait image={data.portrait} />
+        <Name name={data.name} />
+        <Descriptors descriptors={data.descriptors} />
       </Header>
     </GridContainer>
     <GridContainer columns={8} offset={2}>
       <Content>
-        <Blurb title="About Me" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec neque in neque aliquam dignissim. Curabitur est elit, venenatis eget purus non, consequat venenatis dui. Nunc semper ante mi, eu tincidunt tellus dictum sit amet. Pellentesque blandit diam sit amet diam porta hendrerit. Morbi egestas enim augue, eu aliquam ligula pharetra sed. Nam placerat mattis lacus, eu pellentesque purus pulvinar a. Curabitur at luctus lacus. Mauris quis molestie turpis. Fusce quis urna in mi cursus imperdiet." />
+        <Blurb title="About Me" text={data.aboutme} />
         <Blurb theme="coding" title="Coding" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec neque in neque aliquam dignissim. Curabitur est elit, venenatis eget purus non, consequat venenatis dui. Nunc semper ante mi, eu tincidunt tellus dictum sit amet. Pellentesque blandit diam sit amet diam porta hendrerit. Morbi egestas enim augue, eu aliquam ligula pharetra sed. Nam placerat mattis lacus, eu pellentesque purus pulvinar a. Curabitur at luctus lacus. Mauris quis molestie turpis. Fusce quis urna in mi cursus imperdiet.">
           <GridContainer columns={8}>
             <Projects />
