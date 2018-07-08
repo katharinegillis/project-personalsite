@@ -5,7 +5,7 @@ import './Portrait.scss';
 
 const Portrait = ({ image }) => (
   <div className="portrait">
-    {image}
+    <img src={image} alt="" />
   </div>
 );
 

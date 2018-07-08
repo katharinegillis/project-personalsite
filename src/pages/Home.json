@@ -1,0 +1,146 @@
+{
+  "name": "Katie Cordes",
+  "portrait": "images/catmander.png",
+  "descriptors":[
+    "PHP Developer",
+    "Catmander",
+    "Knitter"
+  ],
+  "aboutme": "I am a software developer in my thirties, with side gigs in MMO gaming and knitting. I came to the US nearly a decade ago to live with my now-husband, who is also a software developer (though one who has fallen off the bandwagon and has some mysterious managerial skills these days). I love coming up with new processes to help with development at work, and coming up with new solutions for our clients. In the gaming world I tend to switch between Guild Wars 2, World of Warcraft, and Minecraft. I love new story content and dive down the rabbit hole the moment the game developers give me something new to chase. I also love to knit, a skill taught to me by my mother when I was little. I picked it up again a few years ago and since then have made teddy bears, shawls, and socks, many with my mom making the same patterns alongside. We have oodles of fun poking through all the yarn in the nearby yarn stores and attempting to not buy all the gorgeous colours, failing pretty much every time.",
+  "coding": {
+    "title": "Coding",
+    "description": "I have loved to code since the day I was shown it by a friend in the middle of going for my Bachelors of Science in chemistry. It is both my profession, and my hobby. Often when exploring a new technology (usually discovered through work), I will set up personal projects to learn about that technology. This website is one such project - I used this to learn about Docker, both in development and production settins, and also to get more practice with frontend work with CSS.",
+    "projects": [
+      {
+        "title": "Personal Website",
+        "image": "images/catmander.png",
+        "description": "This site! Just a bit about me and some tracking for my various projects.",
+        "link": {
+          "label": "Coming soon!",
+          "href": "#"
+        }
+      },
+      {
+        "title": "GW2 Profit Helper",
+        "image": "images/GW2_Logo.jpg",
+        "description": "A site that allows someone to determine what crafting recipes they can make a profit off of, based on their parameters for what a profit is. Inspiration from gw2profits.com and gw2efficiency.com, both of which include some parts of what this project will be, but not the combined whole.",
+        "link": {
+          "label": "Coming soon!",
+          "href": "#"
+        }
+      }
+    ],
+    "skills": [
+      {
+        "title": "PHP",
+        "descriptor": "professional",
+        "percentage": 80
+      },
+      {
+        "title": "HTML",
+        "descriptor": "professional",
+        "percentage": 75
+      },
+      {
+        "title": "CSS",
+        "descriptor": "intermediate",
+        "percentage": 50
+      }
+    ]
+  },
+  "knitting": {
+    "title": "Knitting",
+    "description": "I learned how to knit from my mom when I was little. I picked it back up again in my early thirties, and have been learning and accumulating finished objects since then.",
+    "projects": [
+      {
+        "title": "Solace Socks",
+        "image": "images/knitting-solace-socks.jpeg",
+        "description": "My third pair of socks for me. These are a cuff-down pair that use 2x2 ribbing as the design - the heel in particular looks fantastic when it's on a foot. Also helping me get better at grafting on the toe.",
+        "link": {
+          "label": "Ravely Project",
+          "href": "http://ravel.me/KatharineCordes/s1"
+        }
+      },
+      {
+        "title": "Celtic Shawl",
+        "image": "images/knitting-celtic-shawl.jpeg",
+        "description": "My second shawl. I love celtic knotwork, and this shawl is a perfect project to use the beautiful blue fingering weight yarn my mom gave me for my 32nd birthday.",
+        "link": {
+          "label": "Ravelry Project",
+          "href": "http://ravel.me/KatharineCordes/cmf"
+        }
+      },
+      {
+        "title": "Cable Sampler Afghan",
+        "image": "images/knitting-sampler-afghan.jpeg",
+        "description": "My first blanket! This is the beautiful Sampler Afghan from the Cables Untangled book, done in a light gray worsted weight 100% wool yarn.",
+        "link": {
+          "label": "Ravelry Project",
+          "href": "http://ravel.me/KatharineCordes/sa"
+        }
+      }
+    ],
+    "skills": [
+      {
+        "title": "knitting",
+        "descriptor": "intermediate",
+        "percentage": 50
+      },
+      {
+        "title": "finishing",
+        "descriptor": "beginner",
+        "percentage": 25
+      }
+    ]
+  },
+  "gaming": {
+    "title": "Gaming",
+    "description": "I've been playing video games since my dad taught me how to play Super Mario World on the SNES when I was 5. I primarily play RPGs or MMORPGs, with some more strategic/survival games every now and then. I dislike playing against other players. My current favourites are Guild Wars 2, World of Warcraft, and Minecraft.",
+    "projects": [
+      {
+        "title": "Guild Wars 2 Ongoing Altoholic Project",
+        "image": "images/GW2_Logo.jpg",
+        "description": "I have always wanted to have a full family of characters - one of each profession. This project tracks my progress with getting each of these characters up to the max level, gearing them, and taking them through the various stories and map exploration. Since they are always releasing new content, this will be a never-ending project.",
+        "link": {
+          "label": "Coming soon!",
+          "href": "#"
+        }
+      },
+      {
+        "title": "World of Warcraft Ongoing Altoholic Project",
+        "image": "images/wow.jpg",
+        "description": "Similar to in Guild Wars 2, I have always wanted to have a full family of characters, one of each class, and as evenly split between gender and race as possible. Also one family for each faction. This project tracks my progress with getting each of these to max level and completing lore and exploration related content, as well as some additional achievements like class mounts and tier armours.",
+        "link": {
+          "label": "Coming soon!",
+          "href": "#"
+        }
+      }
+    ]
+  },
+  "education": [
+    {
+      "title": "BSc in Chemistry",
+      "location": "University of Calgary, Canada",
+      "timeframe": "2004-2010"
+    },
+    {
+      "title": "BSc in Computer Science",
+      "location": "University of Calgary, Canada",
+      "timeframe": "2008-2010"
+    }
+  ],
+  "favourite_shows": [
+    "CSI",
+    "Castle",
+    "Criminal Minds",
+    "Great British Baking Show",
+    "Project Runway",
+    "Doctor Who"
+  ],
+  "favourite_music": [
+    "Disturbed",
+    "Linkin Park",
+    "Three Days Grace",
+    "Celtic Folk"
+  ]
+}
