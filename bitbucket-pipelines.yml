@@ -12,7 +12,7 @@ pipelines:
             - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD registry.katiecordescodes.com
             - docker build -t registry.katiecordescodes.com/personalsite:latest .
             - docker push registry.katiecordescodes.com/personalsite:latest
-            - ssh -t root@katiecordescodes.com /docker/bitbucket-pipelines-update.sh
+            - ssh -t root@katiecordescodes.com /docker/personalsite/bitbucket-pipelines-update.sh
           deployment: production
     develop:
       - step:
@@ -24,7 +24,7 @@ pipelines:
             - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD registry.katiecordescodes.com
             - docker build -t registry.katiecordescodes.com/personalsite:dev .
             - docker push registry.katiecordescodes.com/personalsite:dev
-            - ssh -t root@katiecordescodes.com /docker/bitbucket-pipelines-update.sh
+            - ssh -t root@katiecordescodes.com /docker/personalsite/bitbucket-pipelines-update.sh
           deployment: test
 options:
   docker: true
