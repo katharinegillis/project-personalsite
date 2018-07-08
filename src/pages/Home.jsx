@@ -28,22 +28,35 @@ const Home = () => (
     <GridContainer columns={8} offset={2}>
       <Content>
         <Blurb title="About Me" text={data.aboutme} />
-        <Blurb theme="coding" title="Coding" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec neque in neque aliquam dignissim. Curabitur est elit, venenatis eget purus non, consequat venenatis dui. Nunc semper ante mi, eu tincidunt tellus dictum sit amet. Pellentesque blandit diam sit amet diam porta hendrerit. Morbi egestas enim augue, eu aliquam ligula pharetra sed. Nam placerat mattis lacus, eu pellentesque purus pulvinar a. Curabitur at luctus lacus. Mauris quis molestie turpis. Fusce quis urna in mi cursus imperdiet.">
+        <Blurb theme="coding" title={data.coding.title} text={data.coding.description}>
           <GridContainer columns={8}>
-            <Projects />
+            <Projects projects={data.coding.projects} />
           </GridContainer>
           <GridContainer columns={4}>
-            <Skills title="Coding Skills" />
+            <Skills title="Coding Skills" skills={data.coding.skills} />
+          </GridContainer>
+        </Blurb>
+        <Blurb theme="knitting" title={data.knitting.title} text={data.knitting.description}>
+          <GridContainer columns={8}>
+            <Projects projects={data.knitting.projects} />
+          </GridContainer>
+          <GridContainer columns={4}>
+            <Skills title="Knitting Skills" skills={data.knitting.skills} />
+          </GridContainer>
+        </Blurb>
+        <Blurb theme="gaming" title={data.gaming.title} text={data.gaming.description}>
+          <GridContainer columns={12}>
+            <Projects projects={data.gaming.projects} />
           </GridContainer>
         </Blurb>
         <GridContainer columns={4}>
-          <Education />
+          <Education educationItems={data.education} />
         </GridContainer>
         <GridContainer columns={4}>
-          <Favourites title="Favourite Shows" />
+          <Favourites title="Favourite Shows" items={data.favourite_shows} />
         </GridContainer>
         <GridContainer columns={4}>
-          <Favourites title="Favourite Music" />
+          <Favourites title="Favourite Music" items={data.favourite_music} />
         </GridContainer>
       </Content>
     </GridContainer>

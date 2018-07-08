@@ -2,7 +2,17 @@ version: '3'
 services:
   web:
     build: .
-    ports:
-      - '80:80'
+    labels:
+      - "traefik.frontend.rule=Host:katiecordescodes.docker"
+      - "traefik.fontend.port=80"
+      - "traefik.docker.network=traefik_default"
     volumes:
       - ./html:/usr/share/nginx/html
+    networks:
+      - default
+      - traefik_default
+
+networks:
+  traefik_default:
+    external:
+      name: traefik_default
