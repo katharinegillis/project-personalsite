@@ -17,7 +17,7 @@ const Skill = ({ title, descriptor, percentage }) => (
 Skill.propTypes = {
   title: PropTypes.string.isRequired,
   descriptor: PropTypes.string.isRequired,
-  percentage: PropTypes.string.isRequired,
+  percentage: PropTypes.number.isRequired,
 };
 
 export default Skill;

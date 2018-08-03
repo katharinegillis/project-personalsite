@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import './DescriptorsItem.scss';
 
 const DescriptorsItem = ({ descriptor }) => (
-  <div className="descriptors__item">
+  <li className="c-descriptors__item">
     {descriptor}
-  </div>
+  </li>
 );
 
 DescriptorsItem.propTypes = {

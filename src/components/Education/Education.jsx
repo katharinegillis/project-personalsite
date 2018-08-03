@@ -11,6 +11,7 @@ const Education = ({ educationItems }) => (
         title={item.title}
         location={item.location}
         timeframe={item.timeframe}
+        key={item.title}
       />
     ))}
   </div>

@@ -8,7 +8,7 @@ import FavouritesItem from './FavouritesItem/FavouritesItem';
 const Favourites = ({ title, items }) => (
   <div className="favourites">
     <FavouritesTitle title={title} />
-    {items.map(item => <FavouritesItem item={item} />)}
+    {items.map(item => <FavouritesItem item={item} key={item} />)}
   </div>
 );
 

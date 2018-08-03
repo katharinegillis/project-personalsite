@@ -6,9 +6,9 @@ import './Descriptors.scss';
 import DescriptorsItem from './DescriptorsItem/DescriptorsItem';
 
 const Descriptors = ({ descriptors }) => (
-  <div className="descriptors">
+  <ul className="c-descriptors">
     {descriptors.map(descriptor => <DescriptorsItem descriptor={descriptor} key={descriptor} />)}
-  </div>
+  </ul>
 );
 
 Descriptors.propTypes = {

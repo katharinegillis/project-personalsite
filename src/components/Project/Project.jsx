@@ -25,7 +25,7 @@ const Project = ({ theme, project }) => {
 };
 
 Project.propTypes = {
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.string,
   project: PropTypes.shape({
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -35,6 +35,10 @@ Project.propTypes = {
       label: PropTypes.string,
     }),
   }).isRequired,
+};
+
+Project.defaultProps = {
+  theme: null,
 };
 
 export default Project;

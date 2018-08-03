@@ -13,6 +13,7 @@ const Skills = ({ title, skills }) => (
         title={skill.title}
         descriptor={skill.descriptor}
         percentage={skill.percentage}
+        key={skill.title}
       />
     ))}
   </div>
