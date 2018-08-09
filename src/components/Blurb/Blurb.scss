@@ -1,3 +1,9 @@
-.blurb {
+@import '../../common/scss/colours';
 
+.blurb {
+  width: 60%;
+  background-color: $verylighttan;
+  margin: 40px auto;
+  padding: 30px;
+  color: $darkesttan;
 }
