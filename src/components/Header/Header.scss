@@ -1,14 +1,15 @@
 @import '../../common/scss/grid';
 @import '../../common/scss/breakpoints';
+@import '../../common/scss/colours';
 
 .l-header {
-  background-color: #EEFFFF;
+  background-color: $lighttan;
   width: 100%;
   text-align: center;
 
   @include grid(3);
 
-  padding: 10px;
+  padding: 30px 10px;
   margin-top: 10px;
 
   .l-header__portrait {

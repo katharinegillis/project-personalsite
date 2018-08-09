@@ -1,0 +1,13 @@
+// Colours
+$lighttan: #D7D8CA;
+$mediumtan: #BDAD93;
+$darktan: #9B7956;
+
+$lightteal: #BCD4D8;
+$mediumteal: #528D9F;
+$darkteal: #28586E;
+
+$verydarktan: darken($darktan, 20%);
+$darkesttan: darken($darktan, 30%);
+
+$verylighttan: lighten($lighttan, 12%);
