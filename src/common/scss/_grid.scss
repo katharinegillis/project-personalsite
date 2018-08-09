@@ -1,5 +1,6 @@
 // Grid setup
 @mixin grid($cols) {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat($cols, 1fr);
   grid-gap: 0.5em;
