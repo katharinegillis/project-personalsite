@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './BlurbTitle.scss';
 
 const BlurbTitle = ({ title }) => (
-  <div className="blurb__title">
+  <div className="c-blurb__title">
     {title}
   </div>
 );

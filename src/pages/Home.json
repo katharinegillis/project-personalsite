@@ -6,10 +6,14 @@
     "Catmander",
     "Knitter"
   ],
-  "aboutme": "I am a software developer in my thirties, with side gigs in MMO gaming and knitting. I came to the US nearly a decade ago to live with my now-husband, who is also a software developer (though one who has fallen off the bandwagon and has some mysterious managerial skills these days). I love coming up with new processes to help with development at work, and coming up with new solutions for our clients. In the gaming world I tend to switch between Guild Wars 2, World of Warcraft, and Minecraft. I love new story content and dive down the rabbit hole the moment the game developers give me something new to chase. I also love to knit, a skill taught to me by my mother when I was little. I picked it up again a few years ago and since then have made teddy bears, shawls, and socks, many with my mom making the same patterns alongside. We have oodles of fun poking through all the yarn in the nearby yarn stores and attempting to not buy all the gorgeous colours, failing pretty much every time.",
+  "aboutme": [
+    "I am a software developer in my thirties, with side gigs in MMO gaming and knitting. I came to the US nearly a decade ago to live with my husband, who is also a software developer (though one who has fallen off the bandwagon and has some phenomenal managerial skills these days). I love coming up with new processes to help with development at work, and coming up with new solutions for our clients.",
+    "In the gaming world I tend to switch between Guild Wars 2, World of Warcraft, and Minecraft. I love new story content and dive down the rabbit hole the moment the game developers give me something new to chase.",
+    "I also love to knit, a skill taught to me by my mother when I was little. I picked it up again a few years ago and since then have made teddy bears, shawls, and socks, many with my mom making the same patterns alongside. We have oodles of fun poking through all the yarn in the nearby yarn stores and attempting to not buy all the gorgeous colours, failing pretty much every time."
+  ],
   "coding": {
     "title": "Coding",
-    "description": "I have loved to code since the day I was shown it by a friend in the middle of going for my Bachelors of Science in chemistry. It is both my profession, and my hobby. Often when exploring a new technology (usually discovered through work), I will set up personal projects to learn about that technology. This website is one such project - I used this to learn about Docker, both in development and production settins, and also to get more practice with frontend work with CSS.",
+    "description": ["I have loved to code since the day I was shown it by a friend in the middle of going for my Bachelors of Science in chemistry. It is both my profession, and my hobby. Often when exploring a new technology (usually discovered through work), I will set up personal projects to learn about that technology. This website is one such project - I used this to learn about Docker, both in development and production settins, and also to get more practice with frontend work with CSS."],
     "projects": [
       {
         "title": "Personal Website",
@@ -50,7 +54,7 @@
   },
   "knitting": {
     "title": "Knitting",
-    "description": "I learned how to knit from my mom when I was little. I picked it back up again in my early thirties, and have been learning and accumulating finished objects since then.",
+    "description": ["I learned how to knit from my mom when I was little. I picked it back up again in my early thirties, and have been learning and accumulating finished objects since then."],
     "projects": [
       {
         "title": "Solace Socks",
@@ -95,7 +99,7 @@
   },
   "gaming": {
     "title": "Gaming",
-    "description": "I've been playing video games since my dad taught me how to play Super Mario World on the SNES when I was 5. I primarily play RPGs or MMORPGs, with some more strategic/survival games every now and then. I dislike playing against other players. My current favourites are Guild Wars 2, World of Warcraft, and Minecraft.",
+    "description": ["I've been playing video games since my dad taught me how to play Super Mario World on the SNES when I was 5. I primarily play RPGs or MMORPGs, with some more strategic/survival games every now and then. I dislike playing against other players. My current favourites are Guild Wars 2, World of Warcraft, and Minecraft."],
     "projects": [
       {
         "title": "Guild Wars 2 Ongoing Altoholic Project",

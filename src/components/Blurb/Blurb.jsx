@@ -14,8 +14,8 @@ const Blurb = ({
   children,
 }) => {
   const classes = classnames({
-    blurb: true,
-    [`blurb--theme_${theme}`]: theme,
+    'c-blurb': true,
+    [`c-blurb--theme_${theme}`]: theme,
   });
 
   return (
@@ -29,7 +29,7 @@ const Blurb = ({
 
 Blurb.propTypes = {
   title: PropTypes.string,
-  text: PropTypes.string,
+  text: PropTypes.arrayOf(PropTypes.string),
   theme: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -39,7 +39,7 @@ Blurb.propTypes = {
 
 Blurb.defaultProps = {
   title: null,
-  text: null,
+  text: [],
   theme: null,
   children: null,
 };
