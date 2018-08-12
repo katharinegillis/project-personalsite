@@ -1,7 +1,9 @@
 @import '../../common/scss/colours';
 
 .c-blurb {
-  width: 60%;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
   background-color: $verylighttan;
   margin: 40px auto;
   padding: 30px;

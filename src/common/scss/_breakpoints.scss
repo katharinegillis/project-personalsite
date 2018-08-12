@@ -1,15 +1,21 @@
 // Breakpoints as variables
 $small: 600px;
-$large: $small + 1;
+$large: 1440px;
 
-@mixin media-small-only() {
-  @media screen and (max-width: $small) {
+@mixin media-up-to($size) {
+  @media screen and (max-width: $size - 1) {
     @content;
   }
 }
 
-@mixin media-large-up() {
-  @media screen and (min-width: $large) {
+@mixin media-between($size1, $size2) {
+  @media screen and (min-width: $size1) and (max-width: $size2 - 1) {
+    @content;
+  }
+}
+
+@mixin media-greater-than($size) {
+  @media screen and (min-width: $size) {
     @content;
   }
 }

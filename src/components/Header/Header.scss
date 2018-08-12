@@ -18,7 +18,7 @@
 
     @include col(1);
 
-    @include media-small-only() {
+    @include media-up-to($small) {
       @include col(3);
       text-align: center;
     }
@@ -30,7 +30,7 @@
 
     @include col(2);
 
-    @include media-small-only() {
+    @include media-up-to($small) {
       @include col(3);
       text-align: center;
     }
