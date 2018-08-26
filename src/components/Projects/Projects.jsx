@@ -9,8 +9,8 @@ import Project from '../Project/Project';
 
 const Projects = ({ title, theme, projects }) => {
   const classes = classnames({
-    projects: true,
-    [`projects--theme_${theme}`]: theme,
+    'c-projects': true,
+    [`c-projects--theme_${theme}`]: theme,
   });
 
   return (

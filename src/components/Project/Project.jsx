@@ -10,8 +10,8 @@ import ProjectLink from './ProjectLink/ProjectLink';
 
 const Project = ({ theme, project }) => {
   const classes = classnames({
-    project: true,
-    [`project--theme_${theme}`]: theme,
+    'c-project': true,
+    [`c-project--theme_${theme}`]: theme,
   });
 
   return (

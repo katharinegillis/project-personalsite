@@ -1,3 +1,5 @@
-.c-blurb__text {
+@import '../../../common/scss/grid';
 
+.c-blurb__text {
+  @include col(3);
 }
