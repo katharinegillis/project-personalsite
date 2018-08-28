@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import './Portrait.scss';
-
 const Portrait = ({ image, addClasses }) => {
-  const classes = classnames('c-portrait', addClasses);
+  const classes = classnames('portrait', addClasses);
 
   return (
     <div className={classes}>

@@ -1,8 +1,0 @@
-.c-descriptors__item {
-  display: inline-block;
-}
-
-.c-descriptors__item + .c-descriptors__item::before {
-  content: "|";
-  padding: 0 0.5em;
-}

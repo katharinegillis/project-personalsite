@@ -1,10 +1,8 @@
 import React from 'react';
 
-import Header from '../components/Header/Header';
 import Portrait from '../components/Portrait/Portrait';
 import Name from '../components/Name/Name';
 import Descriptors from '../components/Descriptors/Descriptors';
-import Content from '../components/Content/Content';
 import Blurb from '../components/Blurb/Blurb';
 import Projects from '../components/Projects/Projects';
 import Skills from '../components/Skills/Skills';
@@ -17,12 +15,16 @@ import data from './Home.json';
 
 const Home = () => (
   <div>
-    <Header
-      portrait={<Portrait image={data.portrait} />}
-      name={<Name name={data.name} />}
-      descriptors={<Descriptors descriptors={data.descriptors} />}
-    />
-    <Content>
+    <div className="L-header">
+      <div className="L-header__portrait">
+        <Portrait image={data.portrait} />
+      </div>
+      <div className="L-header__content">
+        <Name name={data.name} />
+        <Descriptors descriptors={data.descriptors} />
+      </div>
+    </div>
+    <div className="L-content">
       <Blurb title="About Me" text={data.aboutme} />
       <Blurb theme="coding" title={data.coding.title} text={data.coding.description}>
         <Projects projects={data.coding.projects} />
@@ -38,7 +40,7 @@ const Home = () => (
       <Education educationItems={data.education} />
       <Favourites title="Favourite Shows" items={data.favourite_shows} />
       <Favourites title="Favourite Music" items={data.favourite_music} />
-    </Content>
+    </div>
     <Footer>
       <Copyright author="Katie Cordes" startYear={2018} />
     </Footer>
