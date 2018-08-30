@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './EducationTitle.scss';
-
 const EducationTitle = ({ title }) => (
   <div className="education__title">
     {title}

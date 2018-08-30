@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './BlurbText.scss';
-
 import utils from '../../../helpers/utils';
 
 class BlurbText extends React.Component {
@@ -15,7 +13,7 @@ class BlurbText extends React.Component {
 
   render() {
     return (
-      <div className="c-blurb__text">
+      <div className="blurb__text">
         {this.paragraphs.map(paragraph => <p key={paragraph.id}>{paragraph.text}</p>)}
       </div>
     );

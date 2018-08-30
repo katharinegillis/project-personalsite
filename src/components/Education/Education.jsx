@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Education.scss';
 import EducationItem from './EducationItem/EducationItem';
 
 const Education = ({ educationItems }) => (

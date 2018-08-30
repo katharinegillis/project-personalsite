@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Skill.scss';
 import SkillTitle from './SkillTitle/SkillTitle';
 import SkillDescriptor from './SkillDescriptor/SkillDescriptor';
 import SkillBar from './SkillBar/SkillBar';

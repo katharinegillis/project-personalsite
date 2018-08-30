@@ -1,0 +1,11 @@
+/* Project component */
+.project {
+  @include grid(4);
+}
+
+/* Project Image component */
+.project__image {
+  @include col(4);
+
+  margin: 0 auto;
+}

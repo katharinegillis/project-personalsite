@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Copyright.scss';
-
 const Copyright = ({ author, startYear }) => {
   const currentYear = new Date().getFullYear();
 

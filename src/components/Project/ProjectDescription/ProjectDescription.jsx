@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './ProjectDescription.scss';
-
 const ProjectDescription = ({ description }) => (
   <div className="project__description">
     {description}

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Favourites.scss';
 import FavouritesTitle from './FavouritesTitle/FavouritesTitle';
 import FavouritesItem from './FavouritesItem/FavouritesItem';
 

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './ProjectLink.scss';
-
 const ProjectLink = ({ href, label, target }) => (
   <div className="project__link">
     <a href={href} target={target}>{label}</a>
