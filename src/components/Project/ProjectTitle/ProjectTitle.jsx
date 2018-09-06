@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ProjectTitle = ({ title }) => (
-  <div className="project__title">
+  <h3 className="project__title">
     {title}
-  </div>
+  </h3>
 );
 
 ProjectTitle.propTypes = {

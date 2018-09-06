@@ -1,11 +1,48 @@
 /* Project component */
 .project {
-  @include grid(4);
+  margin-bottom: 20px;
 }
 
 /* Project Image component */
 .project__image {
-  @include col(4);
+  text-align: center;
 
-  margin: 0 auto;
+  img {
+    max-height: 200px;
+  }
+}
+
+/* Project Title component */
+.project__title {
+  font-size: 18px;
+}
+
+/* Project Description component */
+.project__description {
+  margin-bottom: 10px;
+}
+
+/* Project Link component */
+.project__link {
+  margin-bottom: 10px;
+
+  a {
+    text-decoration: none;
+    color: #3AAA64;
+
+    i {
+      font-size: 1.2em;
+      vertical-align: text-bottom;
+      margin-right: 5px;
+    }
+  }
+
+  a[href="#"] {
+    text-decoration: none;
+    color: inherit;
+
+    i {
+      display: none;
+    }
+  }
 }

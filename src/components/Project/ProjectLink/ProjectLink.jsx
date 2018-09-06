@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 const ProjectLink = ({ href, label, target }) => (
   <div className="project__link">
-    <a href={href} target={target}>{label}</a>
+    <a href={href} target={target}>
+      <i className="material-icons">launch</i>
+      {label}
+    </a>
   </div>
 );
 

@@ -9,9 +9,11 @@ import ProjectLink from './ProjectLink/ProjectLink';
 const Project = ({ project }) => (
   <div className="project">
     <ProjectImage src={project.image} />
-    <ProjectTitle title={project.title} />
-    <ProjectDescription description={project.description} />
-    <ProjectLink href={project.link.href} label={project.link.label} />
+    <div className="project__content">
+      <ProjectTitle title={project.title} />
+      <ProjectDescription description={project.description} />
+      <ProjectLink href={project.link.href} label={project.link.label} />
+    </div>
   </div>
 );
 

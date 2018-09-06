@@ -22,4 +22,14 @@
 /* Blurb Text component */
 .blurb__text {
   @include col(3);
+
+  border-bottom: 1px #eee solid;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
 }
