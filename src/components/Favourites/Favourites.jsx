@@ -1,15 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FavouritesTitle from './FavouritesTitle/FavouritesTitle';
-import FavouritesItem from './FavouritesItem/FavouritesItem';
+const Favourites = ({ title, items, theme }) => {
+  let icon = '';
+  if (theme === 'tv') {
+    icon = <i className="material-icons">desktop_windows</i>;
+  } else if (theme === 'music') {
+    icon = <i className="material-icons">headset</i>;
+  }
 
-const Favourites = ({ title, items, theme }) => (
-  <div className="favourites">
-    <FavouritesTitle title={title} />
-    {items.map(item => <FavouritesItem item={item} key={item} theme={theme} />)}
-  </div>
-);
+  return (
+    <div className="favourites">
+      <h2 className="favourites__title">
+        {title}
+      </h2>
+      {items.map(item => (
+        <h4 key={item} className="favourites__item">
+          {icon}
+          {item}
+        </h4>
+      ))}
+    </div>
+  );
+};
 
 Favourites.propTypes = {
   title: PropTypes.string.isRequired,

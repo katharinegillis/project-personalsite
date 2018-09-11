@@ -1,21 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ProjectTitle from './ProjectTitle/ProjectTitle';
-import ProjectImage from './ProjectImage/ProjectImage';
-import ProjectDescription from './ProjectDescription/ProjectDescription';
-import ProjectLink from './ProjectLink/ProjectLink';
+const Project = ({ project }) => {
+  let handleClick = () => { };
 
-const Project = ({ project }) => (
-  <div className="project">
-    <ProjectImage src={project.image} />
-    <div className="project__content">
-      <ProjectTitle title={project.title} />
-      <ProjectDescription description={project.description} />
-      <ProjectLink href={project.link.href} label={project.link.label} />
+  if (project.link.href === '#') {
+    handleClick = (event) => {
+      event.preventDefault();
+      return false;
+    };
+  }
+
+  return (
+    <div className="project">
+      <div className="project__image" style={{ backgroundImage: `url('${project.image}')` }} />
+      <div className="project__content">
+        <h3 className="project__title">
+          {project.title}
+        </h3>
+        <div className="project__description">
+          {project.description}
+        </div>
+        <div className="project__link">
+          <a href={project.link.href} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
+            <i className="material-icons">launch</i>
+            {project.link.label}
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 Project.propTypes = {
   project: PropTypes.shape({

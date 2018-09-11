@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SkillTitle from './SkillTitle/SkillTitle';
-import SkillDescriptor from './SkillDescriptor/SkillDescriptor';
-import SkillBar from './SkillBar/SkillBar';
-
 const Skill = ({ title, descriptor, percentage }) => (
   <div className="skill">
-    <SkillTitle title={title} />
-    <SkillDescriptor descriptor={descriptor} />
-    <SkillBar percentage={percentage} />
+    <h3 className="skill__title">
+      {title}
+    </h3>
+    <div className="skill__descriptor">
+      {descriptor}
+    </div>
+    <div className="skill__bar">
+      <div style={{ width: `${percentage}%` }}>&nbsp;</div>
+    </div>
   </div>
 );
 

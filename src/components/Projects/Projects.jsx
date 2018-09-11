@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ProjectsTitle from './ProjectsTitle/ProjectsTitle';
 import Project from '../Project/Project';
 
 const Projects = ({ title, projects, fullWidth }) => {
@@ -15,7 +14,11 @@ const Projects = ({ title, projects, fullWidth }) => {
 
   return (
     <div className={classes.join(' ')}>
-      {title ? <ProjectsTitle title={title} /> : null}
+      {title ? (
+        <div className="projects__title">
+          {title}
+        </div>
+      ) : null}
       {projects.map(project => <Project key={project.title} project={project} />)}
     </div>
   );

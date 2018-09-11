@@ -12,14 +12,12 @@
   }
 }
 
-/* Education Item component */
 .education__item {
   &:not(:last-child) {
     margin-bottom: 15px;
   }
 }
 
-/* Education Title component */
 .education__title {
   margin: 0;
 
@@ -30,14 +28,12 @@
   }
 }
 
-/* Education Location component */
 .education__location {
   margin: 5px;
   display: inline-block;
   font-size: 0.9em;
 }
 
-/* Education Timeframe component */
 .education__timeframe {
   display: inline-block;
   color: #b0b7bf;

@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import EducationItem from './EducationItem/EducationItem';
-
 const Education = ({ educationItems }) => (
   <div className="education">
     <h2>Education</h2>
     {educationItems.map(item => (
-      <EducationItem
-        title={item.title}
-        location={item.location}
-        timeframe={item.timeframe}
-        key={item.title}
-      />
+      <div key={item.title} className="education__item">
+        <h3 className="education__title">
+          <i className="material-icons">local_library</i>
+          {item.title}
+        </h3>
+        <h4 className="education__location">
+          {item.location}
+        </h4>
+        <div className="education__timeframe">
+          ({item.timeframe})
+        </div>
+      </div>
     ))}
   </div>
 );

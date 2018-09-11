@@ -10,7 +10,6 @@
   @include grid(3);
 }
 
-/* Blurb Title component */
 .blurb__title {
   font-size: 1.75em;
   font-weight: bold;
@@ -19,7 +18,6 @@
   @include col(3);
 }
 
-/* Blurb Text component */
 .blurb__text {
   @include col(3);
 

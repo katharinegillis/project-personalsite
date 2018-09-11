@@ -15,24 +15,22 @@
   border-radius: 10px;
 }
 
-/* Project Image component - Theme */
+/* Project component - Theme */
 .project__image {
   border-radius: 5px;
 }
 
-/* Project Link component - Theme */
 .project__link {
   a {
     color: $darkteal;
   }
 }
 
-/* Skill Descriptor component - Theme */
+/* Skill component - Theme */
 .skill__descriptor {
   color: $mediumtan;
 }
 
-/* Skill Bar component - Theme */
 .skill__bar {
   background-color: $lighttan;
 
@@ -48,7 +46,6 @@
   border-radius: 10px;
 }
 
-/* Education Timeframe component - Theme */
 .education__timeframe {
   color: $darktan;
 }

@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SkillsTitle from './SkillsTitle/SkillsTitle';
 import Skill from '../Skill/Skill';
 
 const Skills = ({ title, skills }) => (
   <div className="skills">
-    <SkillsTitle title={title} />
+    <h2 className="skills__title">
+      {title}
+    </h2>
     {skills.map(skill => (
       <Skill
         title={skill.title}
