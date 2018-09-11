@@ -40,3 +40,32 @@
   padding: 1px 10px 0;
   box-sizing: border-box;
 }
+
+.L-content__row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+
+  @include media-greater-than($small) {
+    & > div {
+      max-width: 400px;
+      margin: 40px auto;
+    }
+  }
+
+  @include media-greater-than($medium) {
+    @include grid(3);
+
+    & > div {
+      @include col(1);
+    }
+  }
+}
+
+/* Footer */
+.L-footer {
+  width: 100%;
+  background-color: #32383e;
+  padding: 10px 0;
+  text-align: center;
+}

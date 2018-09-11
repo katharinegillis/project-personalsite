@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SkillsTitle = ({ title }) => (
-  <div className="skills__title">
+  <h2 className="skills__title">
     {title}
-  </div>
+  </h2>
 );
 
 SkillsTitle.propTypes = {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const EducationTimeframe = ({ timeframe }) => (
   <div className="education__timeframe">
-    {timeframe}
+    ({timeframe})
   </div>
 );
 

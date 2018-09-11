@@ -1,0 +1,28 @@
+/* Skill component */
+.skill {
+  position: relative;
+}
+
+/* Skill Title component */
+.skill__title {
+  margin-bottom: 5px;
+}
+
+/* Skill Descriptor component */
+.skill__descriptor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #ccd1d6;
+  font-size: 0.9em;
+}
+
+/* Skill Bar component */
+.skill__bar {
+  background-color: #e8e8e8;
+  width: 100%;
+
+  div {
+    background-color: #66cb8c;
+  }
+}

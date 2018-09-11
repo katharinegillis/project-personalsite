@@ -1,14 +1,30 @@
 /* Project component */
 .project {
   margin-bottom: 20px;
+
+  @include media-greater-than($medium) {
+    @include grid(3);
+  }
+}
+
+.project__content {
+  @include media-greater-than($medium) {
+    @include col(2);
+    margin-left: 10px;
+  }
 }
 
 /* Project Image component */
 .project__image {
-  text-align: center;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-  img {
-    max-height: 200px;
+  @include media-greater-than($medium) {
+    @include col(1);
   }
 }
 
@@ -40,6 +56,7 @@
   a[href="#"] {
     text-decoration: none;
     color: inherit;
+    cursor: text;
 
     i {
       display: none;

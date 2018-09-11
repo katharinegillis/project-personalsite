@@ -37,17 +37,17 @@
     "skills": [
       {
         "title": "PHP",
-        "descriptor": "professional",
+        "descriptor": "Professional",
         "percentage": 80
       },
       {
         "title": "HTML",
-        "descriptor": "professional",
+        "descriptor": "Professional",
         "percentage": 75
       },
       {
         "title": "CSS",
-        "descriptor": "intermediate",
+        "descriptor": "Intermediate",
         "percentage": 50
       }
     ]
@@ -86,13 +86,13 @@
     ],
     "skills": [
       {
-        "title": "knitting",
-        "descriptor": "intermediate",
+        "title": "Knitting",
+        "descriptor": "Intermediate",
         "percentage": 50
       },
       {
-        "title": "finishing",
-        "descriptor": "beginner",
+        "title": "Finishing",
+        "descriptor": "Beginner",
         "percentage": 25
       }
     ]
@@ -123,14 +123,14 @@
   },
   "education": [
     {
-      "title": "BSc in Chemistry",
-      "location": "University of Calgary, Canada",
-      "timeframe": "2004-2010"
-    },
-    {
       "title": "BSc in Computer Science",
       "location": "University of Calgary, Canada",
       "timeframe": "2008-2010"
+    },
+    {
+      "title": "BSc in Chemistry",
+      "location": "University of Calgary, Canada",
+      "timeframe": "2004-2010"
     }
   ],
   "favourite_shows": [

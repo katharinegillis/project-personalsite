@@ -1,14 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ProjectLink = ({ href, label, target }) => (
-  <div className="project__link">
-    <a href={href} target={target}>
-      <i className="material-icons">launch</i>
-      {label}
-    </a>
-  </div>
-);
+const ProjectLink = ({ href, label, target }) => {
+  let handleClick = () => { };
+
+  if (href === '#') {
+    handleClick = (event) => {
+      event.preventDefault();
+      return false;
+    };
+  }
+
+  return (
+    <div className="project__link">
+      <a href={href} target={target} onClick={handleClick}>
+        <i className="material-icons">launch</i>
+        {label}
+      </a>
+    </div>
+  );
+};
 
 ProjectLink.propTypes = {
   href: PropTypes.string.isRequired,

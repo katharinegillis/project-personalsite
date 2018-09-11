@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const SkillBar = ({ percentage }) => (
   <div className="skill__bar">
-    {percentage}
+    <div style={{ width: `${percentage}%` }}>&nbsp;</div>
   </div>
 );
 

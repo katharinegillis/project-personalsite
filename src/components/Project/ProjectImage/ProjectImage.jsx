@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ProjectImage = ({ src }) => (
-  <div className="project__image">
-    <img src={src} alt="" />
-  </div>
+  <div className="project__image" style={{ backgroundImage: `url('${src}')` }} />
 );
 
 ProjectImage.propTypes = {

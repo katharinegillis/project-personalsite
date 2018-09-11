@@ -6,3 +6,7 @@
     @include col(3);
   }
 }
+
+.projects--fullwidth {
+  @include col(3);
+}

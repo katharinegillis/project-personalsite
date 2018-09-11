@@ -4,12 +4,22 @@ import PropTypes from 'prop-types';
 import ProjectsTitle from './ProjectsTitle/ProjectsTitle';
 import Project from '../Project/Project';
 
-const Projects = ({ title, projects }) => (
-  <div className="projects">
-    {title ? <ProjectsTitle title={title} /> : null}
-    {projects.map(project => <Project key={project.title} project={project} />)}
-  </div>
-);
+const Projects = ({ title, projects, fullWidth }) => {
+  const classes = [
+    'projects',
+  ];
+
+  if (fullWidth) {
+    classes.push('projects--fullwidth');
+  }
+
+  return (
+    <div className={classes.join(' ')}>
+      {title ? <ProjectsTitle title={title} /> : null}
+      {projects.map(project => <Project key={project.title} project={project} />)}
+    </div>
+  );
+};
 
 Projects.propTypes = {
   title: PropTypes.string,
@@ -23,11 +33,13 @@ Projects.propTypes = {
       target: PropTypes.string,
     }),
   })),
+  fullWidth: PropTypes.bool,
 };
 
 Projects.defaultProps = {
   title: null,
   projects: [],
+  fullWidth: false,
 };
 
 export default Projects;

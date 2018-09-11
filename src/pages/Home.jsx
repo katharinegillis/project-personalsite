@@ -9,7 +9,6 @@ import Skills from '../components/Skills/Skills';
 import Favourites from '../components/Favourites/Favourites';
 import Education from '../components/Education/Education';
 import Copyright from '../components/Copyright/Copyright';
-import Footer from '../components/Footer/Footer';
 
 import data from './Home.json';
 
@@ -35,15 +34,17 @@ const Home = () => (
         <Skills title="Knitting Skills" skills={data.knitting.skills} />
       </Blurb>
       <Blurb theme="gaming" title={data.gaming.title} text={data.gaming.description}>
-        <Projects projects={data.gaming.projects} />
+        <Projects projects={data.gaming.projects} fullWidth />
       </Blurb>
-      <Education educationItems={data.education} />
-      <Favourites title="Favourite Shows" items={data.favourite_shows} />
-      <Favourites title="Favourite Music" items={data.favourite_music} />
+      <div className="L-content__row">
+        <Education educationItems={data.education} />
+        <Favourites title="Favourite Shows" items={data.favourite_shows} theme="tv" />
+        <Favourites title="Favourite Music" items={data.favourite_music} theme="music" />
+      </div>
     </div>
-    <Footer>
+    <div className="L-footer">
       <Copyright author="Katie Cordes" startYear={2018} />
-    </Footer>
+    </div>
   </div>
 );
 

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FavouritesTitle = ({ title }) => (
-  <div className="favourites__title">
+  <h2 className="favourites__title">
     {title}
-  </div>
+  </h2>
 );
 
 FavouritesTitle.propTypes = {
