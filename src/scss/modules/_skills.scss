@@ -1,0 +1,10 @@
+/* Skills component */
+.skills {
+  @include media-up-to($small) {
+    @include col(3);
+  }
+
+  @include media-greater-than($small) {
+    margin-left: 30px;
+  }
+}

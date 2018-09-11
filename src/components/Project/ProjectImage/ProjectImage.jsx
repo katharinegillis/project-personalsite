@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './ProjectImage.scss';
-
 const ProjectImage = ({ src }) => (
-  <div className="project__image">
-    <img src={src} alt="" />
-  </div>
+  <div className="project__image" style={{ backgroundImage: `url('${src}')` }} />
 );
 
 ProjectImage.propTypes = {

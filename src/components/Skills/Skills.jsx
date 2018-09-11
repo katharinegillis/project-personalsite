@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Skills.scss';
 import SkillsTitle from './SkillsTitle/SkillsTitle';
 import Skill from '../Skill/Skill';
 
@@ -13,6 +12,7 @@ const Skills = ({ title, skills }) => (
         title={skill.title}
         descriptor={skill.descriptor}
         percentage={skill.percentage}
+        key={skill.title}
       />
     ))}
   </div>

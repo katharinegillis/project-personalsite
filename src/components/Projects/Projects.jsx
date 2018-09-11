@@ -1,29 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-
-import './Projects.scss';
 
 import ProjectsTitle from './ProjectsTitle/ProjectsTitle';
 import Project from '../Project/Project';
 
-const Projects = ({ title, theme, projects }) => {
-  const classes = classnames({
-    projects: true,
-    [`projects--theme_${theme}`]: theme,
-  });
+const Projects = ({ title, projects, fullWidth }) => {
+  const classes = [
+    'projects',
+  ];
+
+  if (fullWidth) {
+    classes.push('projects--fullwidth');
+  }
 
   return (
-    <div className={classes}>
+    <div className={classes.join(' ')}>
       {title ? <ProjectsTitle title={title} /> : null}
-      {projects.map(project => <Project key={project.title} project={project} theme={theme} />)}
+      {projects.map(project => <Project key={project.title} project={project} />)}
     </div>
   );
 };
 
 Projects.propTypes = {
   title: PropTypes.string,
-  theme: PropTypes.string,
   projects: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -34,12 +33,13 @@ Projects.propTypes = {
       target: PropTypes.string,
     }),
   })),
+  fullWidth: PropTypes.bool,
 };
 
 Projects.defaultProps = {
   title: null,
-  theme: null,
   projects: [],
+  fullWidth: false,
 };
 
 export default Projects;

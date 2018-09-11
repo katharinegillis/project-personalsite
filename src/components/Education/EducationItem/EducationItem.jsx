@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './EducationItem.scss';
 import EducationTitle from './EducationTitle/EducationTitle';
 import EducationTimeframe from './EducationTimeframe/EducationTimeframe';
 import EducationLocation from './EducationLocation/EducationLocation';

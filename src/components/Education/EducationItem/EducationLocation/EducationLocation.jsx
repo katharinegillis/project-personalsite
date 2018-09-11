@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './EducationLocation.scss';
-
 const EducationLocation = ({ location }) => (
-  <div className="education__location">
+  <h4 className="education__location">
     {location}
-  </div>
+  </h4>
 );
 
 EducationLocation.propTypes = {

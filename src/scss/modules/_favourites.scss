@@ -1,0 +1,24 @@
+/* Favourites component */
+.favourites {
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #434343;
+  width: 100%;
+  padding: 30px;
+  margin-bottom: 40px;
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+/* Favourites Item component */
+.favourites__item {
+  margin: 5px;
+
+  i {
+    font-size: 1.2em;
+    vertical-align: text-bottom;
+    margin-right: 5px;
+  }
+}

@@ -1,0 +1,45 @@
+/* Education component */
+.education {
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #434343;
+  width: 100%;
+  padding: 30px;
+  margin-bottom: 40px;
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+/* Education Item component */
+.education__item {
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+/* Education Title component */
+.education__title {
+  margin: 0;
+
+  i {
+    font-size: 1.2em;
+    vertical-align: text-bottom;
+    margin-right: 5px;
+  }
+}
+
+/* Education Location component */
+.education__location {
+  margin: 5px;
+  display: inline-block;
+  font-size: 0.9em;
+}
+
+/* Education Timeframe component */
+.education__timeframe {
+  display: inline-block;
+  color: #b0b7bf;
+  font-size: 0.8em;
+}
