@@ -41,7 +41,21 @@
   }
 }
 
+/* Education component - Theme */
+.education {
+  background-color: $verylighttan;
+  color: $darkesttan;
+  border-radius: 10px;
+}
+
 /* Education Timeframe component - Theme */
 .education__timeframe {
   color: $darktan;
+}
+
+/* Favourites component - Theme */
+.favourites {
+  background-color: $verylighttan;
+  color: $darkesttan;
+  border-radius: 10px;
 }
