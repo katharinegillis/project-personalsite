@@ -49,7 +49,7 @@
   @include media-greater-than($small) {
     & > div {
       max-width: 400px;
-      margin: 40px auto;
+      margin: 0 auto;
     }
   }
 
