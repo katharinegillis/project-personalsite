@@ -1,0 +1,58 @@
+/* Name component - Theme */
+.name {
+  color: $darkesttan;
+}
+
+/* Descriptors component - Theme */
+.descriptors {
+  color: $verydarktan;
+}
+
+/* Blurb component - Theme */
+.blurb {
+  background-color: $verylighttan;
+  color: $darkesttan;
+  border-radius: 10px;
+}
+
+/* Project component - Theme */
+.project__image {
+  border-radius: 5px;
+}
+
+.project__link {
+  a {
+    color: $darkteal;
+  }
+}
+
+/* Skill component - Theme */
+.skill__descriptor {
+  color: $mediumtan;
+}
+
+.skill__bar {
+  background-color: $lighttan;
+
+  div {
+    background-color: $darkteal;
+  }
+}
+
+/* Education component - Theme */
+.education {
+  background-color: $verylighttan;
+  color: $darkesttan;
+  border-radius: 10px;
+}
+
+.education__timeframe {
+  color: $darktan;
+}
+
+/* Favourites component - Theme */
+.favourites {
+  background-color: $verylighttan;
+  color: $darkesttan;
+  border-radius: 10px;
+}

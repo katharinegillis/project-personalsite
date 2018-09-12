@@ -1,0 +1,61 @@
+/* Project component */
+.project {
+  margin-bottom: 20px;
+
+  @include media-greater-than($medium) {
+    @include grid(3);
+  }
+}
+
+.project__content {
+  @include media-greater-than($medium) {
+    @include col(2);
+    margin-left: 10px;
+  }
+}
+
+.project__image {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include media-greater-than($medium) {
+    @include col(1);
+  }
+}
+
+.project__title {
+  font-size: 18px;
+}
+
+.project__description {
+  margin-bottom: 10px;
+}
+
+.project__link {
+  margin-bottom: 10px;
+
+  a {
+    text-decoration: none;
+    color: #3AAA64;
+
+    i {
+      font-size: 1.2em;
+      vertical-align: text-bottom;
+      margin-right: 5px;
+    }
+  }
+
+  a[href="#"] {
+    text-decoration: none;
+    color: inherit;
+    cursor: text;
+
+    i {
+      display: none;
+    }
+  }
+}

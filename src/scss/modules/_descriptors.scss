@@ -1,0 +1,17 @@
+/* Descriptors component */
+.descriptors {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0;
+  font-size: 1.25em;
+  color: #778492;
+}
+
+.descriptors__item {
+  display: inline-block;
+}
+
+.descriptors__item + .descriptors__item::before {
+  content: "|";
+  padding: 0 0.5em;
+}
