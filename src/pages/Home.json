@@ -18,10 +18,10 @@
       {
         "title": "Personal Website",
         "image": "images/catmander.png",
-        "description": "This site! Just a bit about me and some tracking for my various projects.",
+        "description": "This site! Just a bit about me and some tracking for my various projects. It is my first foray into using docker for both development and production environments, and also my training grounds for learning BEM and SMACSS.",
         "link": {
-          "label": "Coming soon!",
-          "href": "#"
+          "label": "Development Preview",
+          "href": "https://dev.katiecordescodes.com"
         }
       },
       {
@@ -57,7 +57,7 @@
     "description": ["I learned how to knit from my mom when I was little. I picked it back up again in my early thirties, and have been learning and accumulating finished objects since then."],
     "projects": [
       {
-        "title": "Solace Socks",
+        "title": "Solace Socks - Complete!",
         "image": "images/knitting-solace-socks.jpeg",
         "description": "My third pair of socks for me. These are a cuff-down pair that use 2x2 ribbing as the design - the heel in particular looks fantastic when it's on a foot. Also helping me get better at grafting on the toe.",
         "link": {
