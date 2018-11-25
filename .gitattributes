@@ -1,0 +1,22 @@
+# Autodetect text files
+* text=auto
+
+# Override the git defaults
+
+# Text files
+*.html text
+*.css text
+*.js text
+*.json text
+*.jsx text
+*.scss text
+*.yml text
+*.sh text
+Dockerfile text
+.eslintrc text
+yarn.lock text
+
+# Binary files
+*.jpg binary
+*.jpeg binary
+*.png binary
