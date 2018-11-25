@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  web:
+    image: registry.katiecordescodes.com/personalsite:dev
+    restart: always
+    labels:
+      - traefik.backend=personalsite-dev
+      - traefik.frontend.rule=Host:dev.katiecordescodes.com
+      - traefik.docker.network=traefik_default
+      - traefik.port=80
+    env_file:
+      - dev-web.env
