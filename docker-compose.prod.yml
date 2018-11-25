@@ -13,3 +13,4 @@ services:
       - traefik.frontend.redirect.replacement=https://katiecordescodes.com/$${1}
     env_file:
       - prod-web.env
+    volumes: []
