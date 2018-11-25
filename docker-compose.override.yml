@@ -1,0 +1,7 @@
+# The override build for dev - handles things like adding volumes that can't exist in other environments
+version: '3'
+
+services:
+  web:
+    volumes:
+      - ./html:/usr/share/nginx/html

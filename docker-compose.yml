@@ -1,4 +1,6 @@
+# The basic build for dev - excepting things like the volumes which can't be removed as an override
 version: '3'
+
 services:
   web:
     build: .

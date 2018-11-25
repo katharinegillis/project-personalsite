@@ -1,3 +1,4 @@
+# The override for the dev (staging) server
 version: "3"
 
 services:
@@ -11,4 +12,3 @@ services:
       - traefik.port=80
     env_file:
       - dev-web.env
-    volumes: []
