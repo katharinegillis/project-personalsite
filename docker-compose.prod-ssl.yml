@@ -3,7 +3,7 @@ version: "3.7"
 services:
   personalsite:
     labels:
-      - "traefik.middlewares.personalsite-redirect-websecure.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.personalsite-redirect-websecure.redirectscheme.scheme=https"
       - "traefik.http.routers.personalsite.middlewares=personalsite-redirect-websecure"
       - "traefik.http.routers.personalsitesecure.rule=Host(`${PERSONALSITE_URL}`)"
       - "traefik.http.routers.personalsitesecure.entryPoints=websecure"
