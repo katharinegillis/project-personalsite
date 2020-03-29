@@ -1,17 +1,18 @@
-# The basic build for dev - excepting things like the volumes which can't be removed as an override
-version: '3'
+version: '3.7'
 
 services:
-  web:
-    build: .
+  personalsite:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: personalsite
     labels:
-      - "traefik.frontend.rule=Host:katiecordescodes.docker"
-      - "traefik.fontend.port=80"
-      - "traefik.docker.network=traefik_default"
+      - "traefik.enable=true"
+      - "traefik.http.routers.personalsite.rule=Host(`personalsite.localhost`)"
+      - "traefik.http.routers.personalsite.entryPoints=web"
     networks:
-      - default
-      - traefik_default
+      - traefik
 
 networks:
-  traefik_default:
+  traefik:
     external: true
