@@ -1,7 +1,7 @@
 pipeline {
     environment {
         DISCORD_WEBHOOK_URL = credentials('discord-jenkins-webhook')
-        IMAGE = "registry.ops.atmosol.net/personalsite"
+        IMAGE = "registry.ops.katiecordescodes.net/personalsite"
         REGISTRY_CREDENTIALS = "docker-registry-jenkins"
         REGISTRY_URL = "https://registry.ops.atmosol.net"
         DEPLOY_HOST = "198.199.98.217"
