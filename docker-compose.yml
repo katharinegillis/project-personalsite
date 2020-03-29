@@ -2,9 +2,6 @@ version: '3.7'
 
 services:
   personalsite:
-    build:
-      context: .
-      dockerfile: Dockerfile
     container_name: personalsite
     labels:
       - "traefik.enable=true"

@@ -1,16 +1,11 @@
-# The override for the prod server
-version: "3"
+version: "3.7"
 
 services:
-  web:
-    image: registry.katiecordescodes.com/personalsite:latest
+  personalsite:
+    image: registry.ops.katiecordescodes.com/personalsite
+    container_name: ${PERSONALSITE_URL}
     restart: always
     labels:
-      - traefik.backend=personalsite
-      - traefik.frontend.rule=Host:katiecordescodes.com,www.katiecordescodes.com
-      - traefik.docker.network=traefik_default
-      - traefik.port=80
-      - traefik.frontend.redirect.regex=^https?://www.katiecordescodes.com/(.*)
-      - traefik.frontend.redirect.replacement=https://katiecordescodes.com/$${1}
-    env_file:
-      - prod-web.env
+      - "traefik.enable=true"
+      - "traefik.http.routers.personalsite.rule=Host(`${PERSONALSITE_URL}`)"
+      - "traefik.http.routers.personalsite.entryPoints=web"
