@@ -48,7 +48,7 @@ pipeline {
 
                         sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH"
                         sshPut remote: remote, from: ".env-dist", into: "$DEPLOY_PATH/.env"
-                        sshCommand remote: remote, command: "sed -i s/PERSONALSITE_URL=/PERSONALSITE_URL=$DEPLOY_URL/g $DEPLOY_URL/.env"
+                        sshCommand remote: remote, command: "sed -i s/PERSONALSITE_URL=/PERSONALSITE_URL=$DEPLOY_URL/g $DEPLOY_PATH/.env"
                         sshPut remote: remote, from: "docker-compose.yml", into: "$DEPLOY_PATH/docker-compose.yml"
                         sshPut remote: remote, from: "docker-compose.prod.yml", into: "$DEPLOY_PATH/docker-compose.prod.yml"
                         sshPut remote: remote, from: "docker-compose.prod-ssl.yml", into: "$DEPLOY_PATH/docker-compose.prod-ssl.yml"
