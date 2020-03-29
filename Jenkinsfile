@@ -3,7 +3,7 @@ pipeline {
         DISCORD_WEBHOOK_URL = credentials('discord-jenkins-webhook')
         IMAGE = "registry.ops.katiecordescodes.net/personalsite"
         REGISTRY_CREDENTIALS = "docker-registry-jenkins"
-        REGISTRY_URL = "https://registry.ops.atmosol.net"
+        REGISTRY_URL = "https://registry.ops.katiecordescodes.net"
         DEPLOY_HOST = "198.199.98.217"
         DEPLOY_URL = "katiecordescodes.com"
         DEPLOY_PATH = "/home/kcordes/jenkins-dockers/personalsite"
