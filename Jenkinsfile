@@ -57,16 +57,16 @@ pipeline {
                 }
             }
         }
-        post {
-            always {
-                sh "docker image prune -f"
-            }
-            success {
-                discordSend(webhookURL: discordWebhookURL, description: "Build completed.", link: env.BUILD_URL, result: currentBuild.currentResult)
-            }
-            failure {
-                discordSend(webhookURL: discordWebhookURL, description: "Build failed.", link: env.BUILD_URL, result: currentBuild.currentResult)
-            }
+    }
+    post {
+        always {
+            sh "docker image prune -f"
+        }
+        success {
+            discordSend(webhookURL: discordWebhookURL, description: "Build completed.", link: env.BUILD_URL, result: currentBuild.currentResult)
+        }
+        failure {
+            discordSend(webhookURL: discordWebhookURL, description: "Build failed.", link: env.BUILD_URL, result: currentBuild.currentResult)
         }
     }
 }
