@@ -53,7 +53,7 @@ pipeline {
                     sh "echo 'chown :kcordes-jenkins $DEPLOY_PATH/*' >> temp.sh"
                     withCredentials([usernamePassword(credentialsId: REGISTRY_CREDENTIALS, usernameVariable: 'username', passwordVariable: 'password')]) {
                         sh "echo '$password' > dockerlogin.txt"
-                        sh "echo 'cat $DEPLOY_PATH_ROOT/temp/dockerlogin.txt | docker login --username $username --password-stdin https://$REGISTRY_URL' >> temp.sh"
+                        sh "echo 'cat $DEPLOY_PATH_ROOT/temp/dockerlogin.txt | docker login --username $username --password-stdin $REGISTRY_URL' >> temp.sh"
                     }
                     sh "echo 'cd $DEPLOY_PATH' >> temp.sh"
                     sh "echo 'docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml pull' >> temp.sh"
