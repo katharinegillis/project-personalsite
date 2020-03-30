@@ -68,26 +68,26 @@ pipeline {
                         remote.passphrase = passphrase
 
                         try {
-                            sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz"
+                            sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz", failOnError: true
                         } catch (Exception e1) {
                             sleep 5
                             try {
-                                sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz"
+                                sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz", failOnError: true
                             } catch (Exception e2) {
                                 sleep 5
-                                sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz"
+                                sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz", failOnError: true
                             }
                         }
 
                         try {
-                            sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; chmod u+x $DEPLOY_PATH_ROOT/temp/temp.sh; bash $DEPLOY_PATH_ROOT/temp/temp.sh"
+                            sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; chmod u+x $DEPLOY_PATH_ROOT/temp/temp.sh; bash $DEPLOY_PATH_ROOT/temp/temp.sh; rm -rf $DEPLOY_PATH_ROOT/temp; rm -rf $DEPLOY_PATH_ROOT/temp.tar.gz", failOnError: true
                         } catch (Exception e1) {
                             sleep 5
                             try {
-                                sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; chmod u+x $DEPLOY_PATH_ROOT/temp/temp.sh; bash $DEPLOY_PATH_ROOT/temp/temp.sh"
+                                sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; chmod u+x $DEPLOY_PATH_ROOT/temp/temp.sh; bash $DEPLOY_PATH_ROOT/temp/temp.sh; rm -rf $DEPLOY_PATH_ROOT/temp; rm -rf $DEPLOY_PATH_ROOT/temp.tar.gz", failOnError: true
                             } catch (Exception e2) {
                                 sleep 5
-                                sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; chmod u+x $DEPLOY_PATH_ROOT/temp/temp.sh; bash $DEPLOY_PATH_ROOT/temp/temp.sh"
+                                sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; chmod u+x $DEPLOY_PATH_ROOT/temp/temp.sh; bash $DEPLOY_PATH_ROOT/temp/temp.sh; rm -rf $DEPLOY_PATH_ROOT/temp; rm -rf $DEPLOY_PATH_ROOT/temp.tar.gz", failOnError: true
                             }
                         }
                     }
