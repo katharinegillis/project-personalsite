@@ -61,7 +61,7 @@ pipeline {
                         remote.passphrase = passphrase
 
                         sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz"
-                        sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; sh $DEPLOY_PATH_ROOT/temp/temp.sh; rm -rf $DEPLOY_PATH_ROOT/temp"
+                        sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; chmod u+x $DEPLOY_PATH_ROOT/temp/temp.sh; sh $DEPLOY_PATH_ROOT/temp/temp.sh; rm -rf $DEPLOY_PATH_ROOT/temp"
                     }
                 }
             }
