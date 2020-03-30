@@ -50,10 +50,16 @@ pipeline {
                     sh "echo 'mv $DEPLOY_PATH_ROOT/temp/docker-compose.prod.yml $DEPLOY_PATH/docker-compose.prod.yml' >> temp.sh"
                     sh "echo 'mv $DEPLOY_PATH_ROOT/temp/docker-compose.prod-ssl.yml $DEPLOY_PATH/docker-compose.prod-ssl.yml' >> temp.sh"
                     sh "echo 'sed -i s/PERSONALSITE_URL=/PERSONALSITE_URL=$DEPLOY_URL/g $DEPLOY_PATH/.env' >> temp.sh"
-                    sh "echo 'chown kcordes:jenkins-docker $DEPLOY_PATH/*' >> temp.sh"
-                    sh "echo 'docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml pull; docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml up -d --remove-orphans' >> temp.sh"
+                    sh "echo 'chown kcordes:kcordes-jenkins $DEPLOY_PATH/*' >> temp.sh"
+                    withCredentials([usernamePassword(credentialsId: REGISTRY_CREDENTIALS, usernameVariable: 'username', passwordVariable: 'password')]) {
+                        sh "echo '$password' > dockerlogin.txt"
+                        sh "echo 'cat $DEPLOY_PATH_ROOT/temp/dockerlogin.txt | docker login --username $username --password-stdin https://$REGISTRY_URL'"
+                    }
+                    sh "echo 'docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml pull' >> temp.sh"
+                    sh "echo 'docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml up -d --remove-orphans' >> temp.sh"
+                    sh "echo 'rm -rf \$HOME/.docker/config.json' >> temp.sh"
 
-                    sh "tar -acf temp.tar.gz temp.sh .env-dist docker-compose.yml docker-compose.prod.yml docker-compose.prod-ssl.yml"
+                    sh "tar -acf temp.tar.gz dockerlogin.txt temp.sh .env-dist docker-compose.yml docker-compose.prod.yml docker-compose.prod-ssl.yml"
 
                     withCredentials([sshUserPrivateKey(credentialsId: DEPLOY_CREDENTIALS, keyFileVariable: "keyfile", passphraseVariable: "passphrase", usernameVariable: "username")]) {
                         remote.user = username
