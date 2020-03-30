@@ -45,10 +45,10 @@ pipeline {
 
                     sh "echo '#!/usr/bin/env bash' > temp.sh"
                     sh "echo 'mkdir -p $DEPLOY_PATH' >> temp.sh"
-                    sh "echo 'mv $DEPLOY_PATH_ROOT/temp/.env-dist $DEPLOY_PATH/.env' >> temp.sh"
-                    sh "echo 'mv $DEPLOY_PATH_ROOT/temp/docker-compose.yml $DEPLOY_PATH/docker-compose.yml' >> temp.sh"
-                    sh "echo 'mv $DEPLOY_PATH_ROOT/temp/docker-compose.prod.yml $DEPLOY_PATH/docker-compose.prod.yml' >> temp.sh"
-                    sh "echo 'mv $DEPLOY_PATH_ROOT/temp/docker-compose.prod-ssl.yml $DEPLOY_PATH/docker-compose.prod-ssl.yml' >> temp.sh"
+                    sh "echo 'cp -f $DEPLOY_PATH_ROOT/temp/.env-dist $DEPLOY_PATH/.env' >> temp.sh"
+                    sh "echo 'cp -f $DEPLOY_PATH_ROOT/temp/docker-compose.yml $DEPLOY_PATH/docker-compose.yml' >> temp.sh"
+                    sh "echo 'cp -f $DEPLOY_PATH_ROOT/temp/docker-compose.prod.yml $DEPLOY_PATH/docker-compose.prod.yml' >> temp.sh"
+                    sh "echo 'cp -f $DEPLOY_PATH_ROOT/temp/docker-compose.prod-ssl.yml $DEPLOY_PATH/docker-compose.prod-ssl.yml' >> temp.sh"
                     sh "echo 'sed -i s/PERSONALSITE_URL=/PERSONALSITE_URL=$DEPLOY_URL/g $DEPLOY_PATH/.env' >> temp.sh"
                     sh "echo 'chown :kcordes-jenkins $DEPLOY_PATH/*' >> temp.sh"
                     withCredentials([usernamePassword(credentialsId: REGISTRY_CREDENTIALS, usernameVariable: 'username', passwordVariable: 'password')]) {
