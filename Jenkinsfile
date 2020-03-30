@@ -50,11 +50,12 @@ pipeline {
                     sh "echo 'mv $DEPLOY_PATH_ROOT/temp/docker-compose.prod.yml $DEPLOY_PATH/docker-compose.prod.yml' >> temp.sh"
                     sh "echo 'mv $DEPLOY_PATH_ROOT/temp/docker-compose.prod-ssl.yml $DEPLOY_PATH/docker-compose.prod-ssl.yml' >> temp.sh"
                     sh "echo 'sed -i s/PERSONALSITE_URL=/PERSONALSITE_URL=$DEPLOY_URL/g $DEPLOY_PATH/.env' >> temp.sh"
-                    sh "echo 'chown kcordes:kcordes-jenkins $DEPLOY_PATH/*' >> temp.sh"
+                    sh "echo 'chown :kcordes-jenkins $DEPLOY_PATH/*' >> temp.sh"
                     withCredentials([usernamePassword(credentialsId: REGISTRY_CREDENTIALS, usernameVariable: 'username', passwordVariable: 'password')]) {
                         sh "echo '$password' > dockerlogin.txt"
-                        sh "echo 'cat $DEPLOY_PATH_ROOT/temp/dockerlogin.txt | docker login --username $username --password-stdin https://$REGISTRY_URL'"
+                        sh "echo 'cat $DEPLOY_PATH_ROOT/temp/dockerlogin.txt | docker login --username $username --password-stdin https://$REGISTRY_URL' >> temp.sh"
                     }
+                    sh "echo 'cd $DEPLOY_PATH' >> temp.sh"
                     sh "echo 'docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml pull' >> temp.sh"
                     sh "echo 'docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml up -d --remove-orphans' >> temp.sh"
                     sh "echo 'rm -rf \$HOME/.docker/config.json' >> temp.sh"
@@ -67,7 +68,7 @@ pipeline {
                         remote.passphrase = passphrase
 
                         sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz"
-                        sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; chmod u+x $DEPLOY_PATH_ROOT/temp/temp.sh; sh $DEPLOY_PATH_ROOT/temp/temp.sh"
+                        sshCommand remote: remote, command: "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; chmod u+x $DEPLOY_PATH_ROOT/temp/temp.sh; bash $DEPLOY_PATH_ROOT/temp/temp.sh"
                     }
                 }
             }
