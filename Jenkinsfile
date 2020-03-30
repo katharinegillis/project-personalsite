@@ -69,11 +69,11 @@ pipeline {
 
                         try {
                             sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz"
-                        } catch (Exception e) {
+                        } catch (Exception e1) {
                             sleep 5
                             try {
                                 sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz"
-                            } catch (Exception e) {
+                            } catch (Exception e2) {
                                 sleep 5
                                 sshPut remote: remote, from: "temp.tar.gz", into: "$DEPLOY_PATH_ROOT/temp.tar.gz"
                             }
@@ -81,11 +81,11 @@ pipeline {
                         def command = "mkdir -p $DEPLOY_PATH_ROOT/temp; tar -xf $DEPLOY_PATH_ROOT/temp.tar.gz -C $DEPLOY_PATH_ROOT/temp; chmod u+x $DEPLOY_PATH_ROOT/temp/temp.sh; bash $DEPLOY_PATH_ROOT/temp/temp.sh"
                         try {
                             sshCommand remote: remote, command: $command
-                        } catch (Exception e) {
+                        } catch (Exception e1) {
                             sleep 5
                             try {
                                 sshCommand remote: remote, command: $command
-                            } catch (Exception e) {
+                            } catch (Exception e2) {
                                 sleep 5
                                 sshCommand remote: remote, command: $command
                             }
