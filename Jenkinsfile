@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage("Start") {
             steps {
-                discordSend(webhookURL: DISCORD_WEBHOOK_URL, description: "Build started.", link: env.BUILD_URL)
+                discordSend(webhookURL: DISCORD_WEBHOOK_URL, description: "Build started.", link: env.BUILD_URL, title: env.JOB_NAME)
             }
         }
         stage("Build image") {
@@ -97,13 +97,13 @@ pipeline {
     }
     post {
         success {
-            discordSend(webhookURL: DISCORD_WEBHOOK_URL, description: "Build completed.", link: env.BUILD_URL, result: currentBuild.currentResult)
+            discordSend(webhookURL: DISCORD_WEBHOOK_URL, description: "Build completed.", link: env.BUILD_URL, result: currentBuild.currentResult, title: env.JOB_NAME)
         }
         failure {
-            discordSend(webhookURL: DISCORD_WEBHOOK_URL, description: "Build failed.", link: env.BUILD_URL, result: currentBuild.currentResult)
+            discordSend(webhookURL: DISCORD_WEBHOOK_URL, description: "Build failed.", link: env.BUILD_URL, result: currentBuild.currentResult, title: env.JOB_NAME)
         }
         aborted {
-            discordSend(webhookURL: DISCORD_WEBHOOK_URL, description: "Build aborted.", link: env.BUILD_URL, result: currentBuild.currentResult)
+            discordSend(webhookURL: DISCORD_WEBHOOK_URL, description: "Build aborted.", link: env.BUILD_URL, result: currentBuild.currentResult, title: env.JOB_NAME)
         }
     }
 }
