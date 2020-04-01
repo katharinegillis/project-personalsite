@@ -9,6 +9,7 @@ pipeline {
         DEPLOY_PATH_ROOT = "/home/kcordes/jenkins-dockers"
         DEPLOY_PATH = "/home/kcordes/jenkins-dockers/personalsite"
         DEPLOY_CREDENTIALS = "katie-ubuntu-1804-docker-jenkins"
+        SITE_URL_VARIABLE = "PERSONALSITE_URL"
     }
     agent any
     stages {
@@ -49,7 +50,7 @@ pipeline {
                     sh "echo 'cp -f $DEPLOY_PATH_ROOT/temp/docker-compose.yml $DEPLOY_PATH/docker-compose.yml' >> temp.sh"
                     sh "echo 'cp -f $DEPLOY_PATH_ROOT/temp/docker-compose.prod.yml $DEPLOY_PATH/docker-compose.prod.yml' >> temp.sh"
                     sh "echo 'cp -f $DEPLOY_PATH_ROOT/temp/docker-compose.prod-ssl.yml $DEPLOY_PATH/docker-compose.prod-ssl.yml' >> temp.sh"
-                    sh "echo 'sed -i s/PERSONALSITE_URL=/PERSONALSITE_URL=$DEPLOY_URL/g $DEPLOY_PATH/.env' >> temp.sh"
+                    sh "echo 'sed -i s/$SITE_URL_VARIABLE=/$SITE_URL_VARIABLE=$DEPLOY_URL/g $DEPLOY_PATH/.env' >> temp.sh"
                     sh "echo 'chown :kcordes-jenkins $DEPLOY_PATH/*' >> temp.sh"
                     withCredentials([usernamePassword(credentialsId: REGISTRY_CREDENTIALS, usernameVariable: 'username', passwordVariable: 'password')]) {
                         sh "echo '$password' > dockerlogin.txt"
