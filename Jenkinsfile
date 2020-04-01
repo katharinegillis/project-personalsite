@@ -8,13 +8,13 @@ pipeline {
         DEPLOY_URL = "katiecordescodes.com"
         DEPLOY_PATH_ROOT = "/home/kcordes/jenkins-dockers"
         DEPLOY_PATH = "/home/kcordes/jenkins-dockers/personalsite"
-        DEPLOY_CREDENTIALS = "production-jenkins"
+        DEPLOY_CREDENTIALS = "katie-ubuntu-1804-docker-jenkins"
     }
     agent any
     stages {
         stage("Start") {
             steps {
-                discordSend(webhookURL: DISCORD_WEBHOOK_URL, description: "Build started.", link: env.BUILD_URL, title: "${env.JOB_NAME} #${currentBuild.number}")
+                discordSend(webhookURL: DISCORD_WEBHOOK_URL, description: "Build started.", link: env.BUILD_URL, title: "${env.JOB_NAME} #${currentBuild.number}", result: "SUCCESS")
             }
         }
         stage("Build image") {
