@@ -1,0 +1,73 @@
+version: '3.7'
+
+services:
+  router:
+    image: nginx:1.18-alpine
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.personalsite-frontend.rule=Host(`katiecordescodes.docker`)"
+      - "traefik.http.routers.personalsite-frontend.entrypoints=web"
+      - "traefik.http.routers.personalsite-admin.rule=Host(`admin.katiecordescodes.docker`)"
+      - "traefik.http.routers.personalsite-admin.entrypoints=web"
+      - "traefik.http.routers.personalsite-db-viewer.rule=Host(`db.katiecordescodes.docker`)"
+      - "traefik.http.routers.personalsite-db-viewer.entrypoints=web"
+      - "traefik.http.middlewares.personalsite-db-viewer-ip-whitelist.ipwhitelist.sourcerange=172.0.0.1/8,24.66.128.80"
+      - "traefik.http.routers.personalsite-db-viewer.middlewares=personalsite-db-viewer-ip-whitelist@docker"
+    volumes:
+      - ./router/conf.d:/etc/nginx/conf.d
+    networks:
+      - traefik
+      - default
+
+  oauth-service:
+    image: php:7.4-fpm
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - ./oauth-service/src:/var/www/html
+
+  user-service:
+    image: php:7.4-fpm
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - ./user-service/src:/var/www/html
+
+  data-service:
+    image: php:7.4-fpm
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - ./data-service/src:/var/www/html
+
+  admin-app:
+    image: nginx:1.18-alpine
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - ./admin-app/src:/usr/share/nginx/html
+
+  frontend-app:
+    image: nginx:1.18-alpine
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - ./frontend-app/src:/usr/share/nginx/html
+
+  db:
+    image: mariadb:10.5.5
+    environment:
+      MYSQL_ROOT_PASSWORD:
+    labels:
+      - "traefik.enable=false"
+
+  db-viewer:
+    image: adminer:4.7.7
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    labels:
+      - "traefik.enable=false"
+
+networks:
+  traefik:
+    external: true
