@@ -1,2 +1,5 @@
 # IDE project files
 .idea
+
+# Environment-specific data
+.env
