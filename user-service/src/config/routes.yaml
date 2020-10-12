@@ -1,0 +1,11 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+app_test:
+  path: /api/user
+  controller: App\Controller\TestController::getUser
+
+app_test2:
+  path: /api/user/profile
+  controller: App\Controller\TestController::getUserProfile

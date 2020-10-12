@@ -1,0 +1,11 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+app_test:
+  path: /api/data
+  controller: App\Controller\TestController::getData
+
+app_test2:
+  path: /api/data/profile
+  controller: App\Controller\TestController::getDataProfile
