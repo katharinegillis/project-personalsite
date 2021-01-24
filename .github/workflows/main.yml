@@ -24,6 +24,11 @@ jobs:
         with:
           args: "Starting build for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
 
+      - name: Fetch docker cache
+        uses: satackey/action-docker-layer-caching@v0.0.11
+        # Ignore the failure of a step and avoid terminating the job.
+        continue-on-error: true
+
       - name: Build image(s)
         run: docker-compose -f docker-compose.build.yml build
 
