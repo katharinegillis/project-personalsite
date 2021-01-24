@@ -69,7 +69,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           envs: PERSONALSITE_URL
-          script: chmod +x setup-env.sh && $DEPLOY_PATH/setup-env.sh
+          script: chmod +x $DEPLOY_PATH/setup-env.sh && $DEPLOY_PATH/setup-env.sh
 
       - name: Log in to private registry on the server
         uses: appleboy/ssh-action@master
@@ -84,7 +84,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           envs: REGISTRY_PASSWORD,REGISTRY_USERNAME,REGISTRY_URL
           script: |
-            echo '$REGISTRY_PASSWORD' > dockerlogin.txt
+            echo '$REGISTRY_PASSWORD' > $DEPLOY_PATH/dockerlogin.txt
             cat $DEPLOY_PATH/dockerlogin.txt | docker login --username $REGISTRY_USERNAME --password-stdin $REGISTRY_URL
             rm -rf dockerlogin.txt
 
