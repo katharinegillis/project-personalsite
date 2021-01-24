@@ -5,6 +5,7 @@
 * Version: 1.3.0
 */
 
+// noinspection JSUnresolvedVariable
 (function($) {
 "use strict";
     // Portfolio subpage filters
@@ -67,9 +68,11 @@
     // Contact form validator
     $(function () {
 
-        $('#contact_form').validator();
+        var contact_form = $('#contact_form');
 
-        $('#contact_form').on('submit', function (e) {
+        contact_form.validator();
+
+        contact_form.on('submit', function (e) {
             if (!e.isDefaultPrevented()) {
                 var url = "contact_form/contact_form.php";
 
@@ -82,10 +85,10 @@
                         var messageAlert = 'alert-' + data.type;
                         var messageText = data.message;
 
-                        var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
+                        var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
                         if (messageAlert && messageText) {
-                            $('#contact_form').find('.messages').html(alertBox);
-                            $('#contact_form')[0].reset();
+                            contact_form.find('.messages').html(alertBox);
+                            contact_form[0].reset();
                         }
                     }
                 });
@@ -142,13 +145,14 @@
 
         // Mobile menu
         $('.menu-toggle').on("click", function () {
-            $('#site_header').addClass('animate');
-            $('#site_header').toggleClass('mobile-menu-hide');
+            var site_header = $('#site_header');
+            site_header.addClass('animate');
+            site_header.toggleClass('mobile-menu-hide');
             $('.menu-toggle').toggleClass('open');
         });
 
         // Mobile menu hide on main menu item click
-        $('.main-menu').on("click", "a", function (e) {
+        $('.main-menu').on("click", "a", function () {
             mobileMenuHide();
         });
 
@@ -166,7 +170,7 @@
         // Blog grid init
         var $container = $(".blog-masonry");
         $container.imagesLoaded(function(){
-            $container.masonry();
+            $container.Masonry();
         });
 
         customScroll();
@@ -268,7 +272,7 @@
             iframe: {
                 markup: '<div class="mfp-iframe-scaler">'+
                         '<div class="mfp-close"></div>'+
-                        '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
+                        '<iframe class="mfp-iframe" style="border: none;" allowfullscreen></iframe>'+
                         '<div class="mfp-title mfp-bottom-iframe-title"></div>'+
                       '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
 

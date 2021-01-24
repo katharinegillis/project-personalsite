@@ -12,6 +12,7 @@ $errorMessage = 'There was an error while submitting the form. Please try again 
 
 if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])):
     //your site secret key
+    /** @noinspection SpellCheckingInspection */
     $secret = '6LdqmCAUAAAAANONcPUkgVpTSGGqm60cabVMVaON';
     //get verify response data
 
@@ -43,7 +44,7 @@ if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'
 
             $responseArray = array('type' => 'success', 'message' => $okMessage);
         }
-        catch (\Exception $e)
+        catch (Exception $e)
         {
             $responseArray = array('type' => 'danger', 'message' => $errorMessage);
         }

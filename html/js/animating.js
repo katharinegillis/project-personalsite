@@ -5,13 +5,13 @@
 * Version: 1.3.0
 */
 
-var PageTransitions = (function ($, options) {
+// noinspection JSUnresolvedVariable
+var PageTransitions = (function ($) {
 "use strict";
     var sectionsContainer = $(".animated-sections"),
         isAnimating = false,
         endCurrentPage = true,
         endNextPage = false,
-        windowArea = $(window),
         animEndEventNames = {
             'WebkitAnimation'   : 'webkitAnimationEnd',
             'OAnimation'        : 'oAnimationEnd',
@@ -36,7 +36,7 @@ var PageTransitions = (function ($, options) {
         // Get all the .pt-wrapper div which is the parent for all pt-div
         sectionsContainer.each( function() {
             if (location.hash === "") {
-                $('section[data-id='+ pageStart +']').addClass('section-active');
+                $('section[data-id='+ getActiveSection() +']').addClass('section-active');
             }
         });
 
@@ -56,7 +56,7 @@ var PageTransitions = (function ($, options) {
 
         });
 
-        window.onhashchange = function(event) {
+        window.onhashchange = function() {
             if(location.hash) {
                 if (isAnimating) {
                     return false;
@@ -69,10 +69,8 @@ var PageTransitions = (function ($, options) {
             }
         };
 
-        var menu = options.menu,
-        pageStart = getActiveSection();
-
-        location.hash = pageStart;
+        var menu = options.menu;
+        location.hash = getActiveSection();
         var menuLink = $(menu+' a[href*="'+location.hash.split('/')[0]+'"]');
 
         activeMenuItem(menuLink);
@@ -82,6 +80,7 @@ var PageTransitions = (function ($, options) {
         $('body').append('<div id="page-ajax-loaded" class="page-ajax-loaded animated animated-section-moveFromLeft"></div>');
         ajaxLoader();
 
+        // noinspection JSCheckFunctionSignatures
         $(".lmpixels-arrow-right").click(function() {
             var activeItem = $('.main-menu a.active').parent("li");
             activeItem.next("li").children("a").click();
@@ -90,6 +89,7 @@ var PageTransitions = (function ($, options) {
             }
         });
 
+        // noinspection JSCheckFunctionSignatures
         $(".lmpixels-arrow-left").click(function() {
             var activeItem = $('.main-menu a.active').parent("li");
             activeItem.prev("li").children("a").click();
@@ -134,7 +134,7 @@ var PageTransitions = (function ($, options) {
         }
 
         function hideContent() {
-            $('#page-ajax-loaded').addClass('animated-section-moveToRight closed');
+            ajaxLoadedContent.addClass('animated-section-moveToRight closed');
             $('body').removeClass('ajax-page-visible');
             setTimeout(function(){
                 $('#page-ajax-loaded.closed').html('');
@@ -144,7 +144,7 @@ var PageTransitions = (function ($, options) {
 
         var href = $('.ajax-page-load').each(function(){
             href = $(this).attr('href');
-            if(location.hash == location.hash.split('/')[0] + '/' + href.substr(0,href.length-5)){
+            if(location.hash === location.hash.split('/')[0] + '/' + href.substr(0,href.length-5)){
                 var toLoad =  $(this).attr('href');
                 showContent();
                 ajaxLoadedContent.load(toLoad);
@@ -153,33 +153,32 @@ var PageTransitions = (function ($, options) {
         });
 
         $(document)
-            .on("click",".main-menu, #ajax-page-close-button", function (e) { // Hide Ajax Loaded Page on Navigation cleck and Close button
+            .on("click",".main-menu, #ajax-page-close-button", function (e) { // Hide Ajax Loaded Page on Navigation click and Close button
                 e.preventDefault();
                 hideContent();
                 location.hash = location.hash.split('/')[0];
             })
             .on("click",".ajax-page-load", function () { // Show Ajax Loaded Page
-                var hash = location.hash.split('/')[0] + '/' + $(this).attr('href').substr(0,$(this).attr('href').length-5);
-                location.hash = hash;
+                location.hash = location.hash.split('/')[0] + '/' + $(this).attr('href').substr(0, $(this).attr('href').length - 5);
                 showContent();
 
                 return false;
             });
     }
 
-    function Animate($pageTrigger, gotoPage) {
+    function Animate($pageTrigger) {
 
         // Checking for 'data-animation' attribute.
         if (!($pageTrigger.attr('data-animation'))) {
-            var animNumber = parseInt(Math.floor(Math.random() * 67) + 1);
+            var animNumber = Math.floor(Math.random() * 67) + 1;
             $pageTrigger.data('animation',animNumber);
         }
 
         var animation = $pageTrigger.data('animation').toString(),
-            gotoPage, inClass, outClass, selectedAnimNumber;
+            inClass, outClass, selectedAnimNumber;
 
          // Check if the delimiter '-' is present then create an animation array list.
-        if(animation.indexOf('-') != -1) {
+        if(animation.indexOf('-') !== -1) {
             var randomAnimList = animation.split('-');
             selectedAnimNumber = parseInt(randomAnimList[(Math.floor(Math.random() * randomAnimList.length))]);
         }
@@ -479,8 +478,8 @@ var PageTransitions = (function ($, options) {
             currentPageId = gotoPage;
 
             // Check if the current page is same as the next page then do not do the animation
-            // else reset the 'isAnimatiing' flag
-            if (tempPageIndex != currentPageId) {
+            // else reset the 'isAnimating' flag
+            if (tempPageIndex !== currentPageId) {
                 isAnimating = true;
 
                 $pageWrapper.data('current', currentPageId);
