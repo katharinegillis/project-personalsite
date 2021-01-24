@@ -22,7 +22,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: "Starting build for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${GITHUB_REF##*/}"
+          args: "Starting build for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
 
       - name: Build image(s)
         run: docker-compose -f docker-compose.build.yml build
@@ -30,7 +30,7 @@ jobs:
       - name: Log in to private registry for building
         uses: docker/login-action@v1
         with:
-          registry: $REGISTRY_URL
+          registry: ${{ env.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
@@ -59,7 +59,7 @@ jobs:
       - name: Set up .env on production
         uses: appleboy/ssh-action@master
         env:
-          PERSONALSITE_URL: $DEPLOY_URL
+          PERSONALSITE_URL: ${{ env.DEPLOY_URL }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -74,7 +74,7 @@ jobs:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
           REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-          REGISTRY_URL: $REGISTRY_URL
+          REGISTRY_URL: ${{ env.REGISTRY_URL }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -88,11 +88,14 @@ jobs:
 
       - name: Pull new images and restart containers
         uses: appleboy/ssh-action@master
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          env: DEPLOY_PATH
           script: |
             docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml pull
             docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml up -d --remove-orphans
@@ -100,7 +103,7 @@ jobs:
       - name: Log out of the registry on the server
         uses: appleboy/ssh-action@master
         env:
-          REGISTRY_URL: $REGISTRY_URL
+          REGISTRY_URL: ${{ env.REGISTRY_URL }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -116,7 +119,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: "Build successful for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${GITHUB_REF##*/}"
+          args: "Build successful for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
 
   discord:
     needs: build
@@ -131,4 +134,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: "Build FAILED for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${GITHUB_REF##*/}"
+          args: "Build FAILED for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
