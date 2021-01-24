@@ -1,0 +1,134 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+env:
+  DEPLOY_URL: katiecordescodes.com
+  REGISTRY_URL: https://registry.ops.katiecordescodes.com
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Discord build start notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "Starting build for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${GITHUB_REF##*/}"
+
+      - name: Build image(s)
+        run: docker-compose -f docker-compose.build.yml build
+
+      - name: Log in to private registry for building
+        uses: docker/login-action@v1
+        with:
+          registry: $REGISTRY_URL
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Push image(s)
+        run: docker-compose -f docker-compose.build.yml push
+
+      - name: Ensure the deploy path exists on production
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: mkdir -p ${{ secrets.DEPLOY_PATH }}
+
+      - name: Deploy new docker-compose configs and .env setup script to production
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          source: "docker-compose.yml,docker-compose.prod.yml,docker-compose.prod-ssl.yml,setup-env.sh"
+          target: ${{ secrets.DEPLOY_PATH }}
+
+      - name: Set up .env on production
+        uses: appleboy/ssh-action@master
+        env:
+          PERSONALSITE_URL: $DEPLOY_URL
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          env: PERSONALSITE_URL
+          script: chmod +x setup-env.sh && ./setup-env.sh
+
+      - name: Log in to private registry on the server
+        uses: appleboy/ssh-action@master
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+          REGISTRY_URL: $REGISTRY_URL
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          env: REGISTRY_PASSWORD,REGISTRY_USERNAME,REGISTRY_URL
+          script: |
+            echo '$REGISTRY_PASSWORD' > dockerlogin.txt
+            cat $DEPLOY_PATH/dockerlogin.txt | docker login --username $REGISTRY_USERNAME --password-stdin $REGISTRY_URL
+            rm -rf dockerlogin.txt
+
+      - name: Pull new images and restart containers
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml pull
+            docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml up -d --remove-orphans
+
+      - name: Log out of the registry on the server
+        uses: appleboy/ssh-action@master
+        env:
+          REGISTRY_URL: $REGISTRY_URL
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          env: REGISTRY_URL
+          script: |
+            docker logout $REGISTRY_URL
+            rm -rf $HOME/.docker/config.json
+
+      - name: Discord build start notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "Build successful for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${GITHUB_REF##*/}"
+
+  discord:
+    needs: build
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Get job conclusion
+        uses: technote-space/workflow-conclusion-action@v2
+
+      - name: Discord build start notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "Build FAILED for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${GITHUB_REF##*/}"
