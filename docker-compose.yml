@@ -5,7 +5,7 @@ services:
     container_name: personalsite
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.personalsite.rule=Host(`personalsite.localhost`)"
+      - "traefik.http.routers.personalsite.rule=Host(`personalsite.docker`)"
       - "traefik.http.routers.personalsite.entryPoints=web"
     networks:
       - traefik

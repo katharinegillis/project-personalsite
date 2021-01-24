@@ -1,11 +1,5 @@
 # IDE project files
 .idea
 
-# Node package files
-node_modules
-
-# Project build files
-html/assets
-
 # Sensitive data files
 .env
