@@ -68,7 +68,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          envs: PERSONALSITE_URL
+          envs: PERSONALSITE_URL,DEPLOY_PATH
           script: chmod +x $DEPLOY_PATH/setup-env.sh && $DEPLOY_PATH/setup-env.sh
 
       - name: Log in to private registry on the server
@@ -82,11 +82,11 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          envs: REGISTRY_PASSWORD,REGISTRY_USERNAME,REGISTRY_URL
+          envs: REGISTRY_PASSWORD,REGISTRY_USERNAME,REGISTRY_URL,DEPLOY_PATH
           script: |
             echo '$REGISTRY_PASSWORD' > $DEPLOY_PATH/dockerlogin.txt
             cat $DEPLOY_PATH/dockerlogin.txt | docker login --username $REGISTRY_USERNAME --password-stdin $REGISTRY_URL
-            rm -rf dockerlogin.txt
+            rm -rf $DEPLOY_PATH/dockerlogin.txt
 
       - name: Pull new images and restart containers
         uses: appleboy/ssh-action@master
