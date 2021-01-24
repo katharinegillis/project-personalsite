@@ -63,12 +63,13 @@ jobs:
         uses: appleboy/ssh-action@master
         env:
           PERSONALSITE_URL: ${{ env.DEPLOY_URL }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           envs: PERSONALSITE_URL
-          script: chmod +x setup-env.sh && ./setup-env.sh
+          script: chmod +x setup-env.sh && $DEPLOY_PATH/setup-env.sh
 
       - name: Log in to private registry on the server
         uses: appleboy/ssh-action@master
