@@ -67,7 +67,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          env: PERSONALSITE_URL
+          envs: PERSONALSITE_URL
           script: chmod +x setup-env.sh && ./setup-env.sh
 
       - name: Log in to private registry on the server
@@ -81,7 +81,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          env: REGISTRY_PASSWORD,REGISTRY_USERNAME,REGISTRY_URL
+          envs: REGISTRY_PASSWORD,REGISTRY_USERNAME,REGISTRY_URL
           script: |
             echo '$REGISTRY_PASSWORD' > dockerlogin.txt
             cat $DEPLOY_PATH/dockerlogin.txt | docker login --username $REGISTRY_USERNAME --password-stdin $REGISTRY_URL
@@ -95,7 +95,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          env: DEPLOY_PATH
+          envs: DEPLOY_PATH
           script: |
             docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml pull
             docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml up -d --remove-orphans
@@ -108,7 +108,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          env: REGISTRY_URL
+          envs: REGISTRY_URL
           script: |
             docker logout $REGISTRY_URL
             rm -rf $HOME/.docker/config.json
