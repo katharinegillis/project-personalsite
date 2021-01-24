@@ -43,7 +43,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: mkdir -p ${{ secrets.DEPLOY_PATH }}
 
       - name: Deploy new docker-compose configs and .env setup script to production
@@ -52,7 +51,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           source: "docker-compose.yml,docker-compose.prod.yml,docker-compose.prod-ssl.yml,setup-env.sh"
           target: ${{ secrets.DEPLOY_PATH }}
 
@@ -64,7 +62,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           env: PERSONALSITE_URL
           script: chmod +x setup-env.sh && ./setup-env.sh
 
@@ -79,7 +76,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           env: REGISTRY_PASSWORD,REGISTRY_USERNAME,REGISTRY_URL
           script: |
             echo '$REGISTRY_PASSWORD' > dockerlogin.txt
@@ -94,7 +90,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           env: DEPLOY_PATH
           script: |
             docker-compose -f $DEPLOY_PATH/docker-compose.yml -f $DEPLOY_PATH/docker-compose.prod.yml -f $DEPLOY_PATH/docker-compose.prod-ssl.yml pull
@@ -108,7 +103,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           env: REGISTRY_URL
           script: |
             docker logout $REGISTRY_URL
