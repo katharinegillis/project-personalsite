@@ -470,9 +470,9 @@ input[type="submit"]:focus {
   color: #fff;
   border-radius: 20px;
   font-size: 18px;
-  padding: 0;
-  height: 30px;
-  width: 30px;
+  padding: 5px 10px;
+  height: auto;
+  width: 90px;
   display: block;
   line-height: 30px;
   text-align: center;
