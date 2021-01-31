@@ -860,12 +860,20 @@ textarea.form-control, textarea.form-control:focus {
 /* ------------------------------------------------------------
 6. Elements
 ------------------------------------------------------------ */
+.sub-block {
+  padding-bottom: 15px;
+}
+
 .block-title {
   display: inline-block;
   position: relative;
   padding-right: 12px;
   padding-bottom: 10px;
   margin-bottom: 15px;
+}
+
+.sub-block .block-title {
+  padding-bottom: 0;
 }
 
 .block-title h3 {
