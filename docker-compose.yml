@@ -1,14 +1,28 @@
 version: '3.7'
 
 services:
-  personalsite:
-    container_name: personalsite
+  nginx:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.personalsite.rule=Host(`personalsite.docker`)"
       - "traefik.http.routers.personalsite.entryPoints=web"
     networks:
       - traefik
+      - default
+    depends_on:
+      - phpfpm
+  phpfpm:
+    image: php:8.0-fpm
+    environment:
+      SMTP_FROM_EMAIL:
+      SMTP_HOST:
+      SMTP_USER:
+      SMTP_PASSWORD:
+      CONTACT_EMAIL:
+    labels:
+      - "traefik.enable=false"
+    networks:
+      - default
 
 networks:
   traefik:

@@ -82,6 +82,7 @@
                     data: $(this).serialize(),
                     success: function (data)
                     {
+                        debugger;
                         var messageAlert = 'alert-' + data.type;
                         var messageText = data.message;
 
@@ -126,7 +127,8 @@
         var movementStrength = 23;
         var height = movementStrength / $(document).height();
         var width = movementStrength / $(document).width();
-        $("body").on('mousemove', function(e){
+        var $body = $('body');
+        $body.on('mousemove', function(e){
             var pageX = e.pageX - ($(document).width() / 2),
                 pageY = e.pageY - ($(document).height() / 2),
                 newvalueX = width * pageX * -1,
@@ -254,7 +256,7 @@
             });
 
         // Lightbox init
-        $('body').magnificPopup({
+        $body.magnificPopup({
             delegate: 'a.lightbox',
             type: 'image',
             removalDelay: 300,
@@ -307,6 +309,10 @@
                  values.title = item.el.attr('title');
                 }
             },
+        });
+
+        $body.on('click', '.alert-dismissible button', function(event) {
+            $(event.target).parent('.alert').hide();
         });
     });
 

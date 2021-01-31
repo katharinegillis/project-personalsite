@@ -18,7 +18,7 @@ RUN yarn run encore production
 
 FROM nginx:1.15.0-alpine as image
 
-COPY ./html /usr/share/nginx/html
+COPY ../../html /usr/share/nginx/html
 
 COPY --from=build /app/html/assets /usr/share/nginx/html/assets
 

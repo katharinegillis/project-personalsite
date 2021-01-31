@@ -2961,3 +2961,9 @@ blockquote {
   }
 }
 
+/*--- Alert ----*/
+.alert-dismissible button {
+  padding: 0.3rem 0.6em;
+  margin-bottom: 1.25rem;
+  margin-right: 0.25rem;
+}
