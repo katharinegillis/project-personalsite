@@ -87,7 +87,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           envs: REGISTRY_PASSWORD,REGISTRY_USERNAME,REGISTRY_URL,DEPLOY_PATH
           script: |
-            env
             echo "$REGISTRY_PASSWORD" > $DEPLOY_PATH/dockerlogin.txt
             cat $DEPLOY_PATH/dockerlogin.txt | docker login --username $REGISTRY_USERNAME --password-stdin $REGISTRY_URL
             rm -rf $DEPLOY_PATH/dockerlogin.txt
@@ -102,7 +101,12 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           envs: SITE_URL,DEPLOY_PATH
-          script: env && chmod +x $DEPLOY_PATH/deploy.sh && cd $DEPLOY_PATH && $DEPLOY_PATH/deploy.sh
+          script: |
+            export SITE_URL=$SITE_URL
+            export DEPLOY_PATH=$DEPLOY_PATH
+            chmod +x $DEPLOY_PATH/deploy.sh
+            cd $DEPLOY_PATH
+            $DEPLOY_PATH/deploy.sh
 
       - name: Log out of the registry on the server
         uses: appleboy/ssh-action@master
