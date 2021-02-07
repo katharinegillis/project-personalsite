@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Recreate the .env file
-echo "SITE_URL=$SITE_URL"
+echo $SITE_URL
+echo $DEPLOY_PATH
+exit 1
 rm .env
 touch .env
 echo SITE_URL=${SITE_URL} >> .env
