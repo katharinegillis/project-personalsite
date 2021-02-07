@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # Recreate the .env file
-echo $SITE_URL
-echo $DEPLOY_PATH
+echo ${SITE_URL}
+echo ${DEPLOY_PATH}
 exit 1
 rm .env
 touch .env
 echo SITE_URL=${SITE_URL} >> .env
 
 # Determine which colour is staging
-if grep -q "proxy_pass http://green-backend;' .docker/ingress/ingress-staging.conf
+if grep -q 'proxy_pass http://green-backend;' .docker/ingress/ingress-staging.conf
 then
     STAGING="green"
 else

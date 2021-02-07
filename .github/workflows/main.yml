@@ -101,7 +101,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           envs: SITE_URL,DEPLOY_PATH
-          script: chmod +x $DEPLOY_PATH/deploy.sh && cd $DEPLOY_PATH && $DEPLOY_PATH/deploy.sh
+          script: env && chmod +x $DEPLOY_PATH/deploy.sh && cd $DEPLOY_PATH && $DEPLOY_PATH/deploy.sh
 
       - name: Log out of the registry on the server
         uses: appleboy/ssh-action@master
