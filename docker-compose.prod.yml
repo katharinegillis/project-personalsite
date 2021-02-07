@@ -21,6 +21,8 @@ services:
   green-backend:
     image: registry.ops.katiecordescodes.com/personalsite
     restart: always
+    expose:
+      - "8080"
     labels:
       - "traefik.enable=false"
     networks:
@@ -29,6 +31,8 @@ services:
   blue-backend:
     image: registry.ops.katiecordescodes.com/personalsite
     restart: always
+    expose:
+      - "8080"
     labels:
       - "traefik.enable=false"
     networks:
