@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Recreate the .env file
-echo "SITE_URL=${SITE_URL}"
+echo "SITE_URL=$SITE_URL"
 rm .env
 touch .env
 echo SITE_URL=${SITE_URL} >> .env
