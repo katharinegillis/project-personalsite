@@ -1,6 +1,15 @@
 version: '3.7'
 
 services:
-  personalsite:
+  web:
+    build:
+      dockerfile: Dockerfile
+      context: .
     volumes:
       - ./html:/usr/share/nginx/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.personalsite.rule=Host(`personalsite.docker`)"
+      - "traefik.http.routers.personalsite.entryPoints=web"
+    networks:
+      - traefik
