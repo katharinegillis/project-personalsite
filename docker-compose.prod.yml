@@ -4,6 +4,8 @@ services:
   ingress:
     image: registry.ops.katiecordescodes.com/nginx
     restart: always
+    expose:
+      - "8080"
     volumes:
       - .docker/ingress/ingress.conf:/etc/nginx/conf.d/default.conf
       - .docker/ingress/ingress-staging.conf:/etc/nginx/conf.d/default-staging.conf
@@ -21,8 +23,6 @@ services:
   green-backend:
     image: registry.ops.katiecordescodes.com/personalsite
     restart: always
-    expose:
-      - "8080"
     labels:
       - "traefik.enable=false"
     networks:
@@ -31,8 +31,6 @@ services:
   blue-backend:
     image: registry.ops.katiecordescodes.com/personalsite
     restart: always
-    expose:
-      - "8080"
     labels:
       - "traefik.enable=false"
     networks:
