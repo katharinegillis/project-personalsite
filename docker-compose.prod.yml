@@ -23,18 +23,34 @@ services:
       - blue
 
   green-backend:
-    image: registry.ops.katiecordescodes.com/personalsite
+    image: registry.ops.katiecordescodes.com/personalsite-nginx
     restart: always
+    environment:
+      PHPFPM: green-phpfpm
     labels:
       - "traefik.enable=false"
     networks:
       - green
+    depends_on:
+      - green-phpfpm
+  green-phpfpm:
+    image: registry.ops.katiecordescodes.com/personalsite-phpfpm
+    networks:
+      - green
 
   blue-backend:
-    image: registry.ops.katiecordescodes.com/personalsite
+    image: registry.ops.katiecordescodes.com/personalsite-nginx
     restart: always
+    environment:
+      PHPFPM: blue-phpfpm
     labels:
       - "traefik.enable=false"
+    networks:
+      - blue
+    depends_on:
+      - blue-phpfpm
+  blue-phpfpm:
+    image: registry.ops.katiecordescodes.com/personalsite-phpfpm
     networks:
       - blue
 

@@ -1,25 +1,32 @@
-FROM node:12 as build
+FROM nginx:mainline-alpine as base
 
-RUN mkdir -p /app/html
-WORKDIR /app
+COPY .docker/nginx/nginx.conf /etc/nginx/nginx.conf
 
-COPY package.json /app/package.json
-COPY yarn.lock /app/yarn.lock
+WORKDIR /var/www/html
 
-RUN yarn install
+RUN chown -R nginx:nginx /var/www/html && chmod -R 755 /var/www/html && \
+        chown -R nginx:nginx /var/cache/nginx && \
+        chown -R nginx:nginx /var/log/nginx && \
+        chown -R nginx:nginx /etc/nginx/conf.d
+RUN touch /var/run/nginx.pid && \
+        chown -R nginx:nginx /var/run/nginx.pid
 
-COPY src /app/src
-COPY webpack.config.js /app/webpack.config.js
-COPY .eslintrc /app/.eslintrc
-
-RUN yarn run encore production
-
+EXPOSE 8080
 
 
-FROM nginx:1.15.0-alpine as image
 
-COPY ../../html /usr/share/nginx/html
+FROM base
 
-COPY --from=build /app/html/assets /usr/share/nginx/html/assets
+COPY ./.docker/nginx/site.conf /etc/nginx/conf.d/default.conf
 
-RUN mv /usr/share/nginx/html/index_prod.html /usr/share/nginx/html/index.html
+RUN chmod 777 /etc/nginx/conf.d/default.conf && mkdir -p /var/www/html && chown -R nginx:nginx /var/www/html
+
+COPY ./.docker/nginx/entrypoint.sh /docker-entrypoint.d/entrypoint.sh
+
+RUN chmod +x /docker-entrypoint.d/entrypoint.sh && chown -R nginx:nginx /docker-entrypoint.d/entrypoint.sh
+
+
+
+USER nginx
+
+COPY ./html /var/www/html

@@ -1,8 +1,13 @@
 version: '3.7'
 
 services:
-  personalsite:
-    image: registry.ops.katiecordescodes.com/personalsite
+  nginx:
+    image: registry.ops.katiecordescodes.com/personalsite-nginx
     build:
       context: .
       dockerfile: .docker/nginx/Dockerfile
+  phpfpm:
+    image: registry.ops.katiecordescodes.com/personalsite-phpfpm
+    build:
+      context: .
+      dockerfile: .docker/phpfpm/Dockerfile

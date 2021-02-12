@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Determine which colour is live
-if grep -q 'proxy_pass http://green-backend;' .docker/ingress/ingress.conf
+if grep -q 'proxy_pass http://green-backend:8080;' .docker/ingress/ingress.conf
 then
     CURRENT_BACKEND="green-backend"
     NEW_BACKEND="blue-backend"
@@ -13,10 +13,10 @@ fi
 # Switch which environment is live, and which is staging
 echo "Change ingress configs"
 cp .docker/ingress/ingress.conf .docker/ingress/ingress.conf.back
-sed -i "s|proxy_pass http://.*;|proxy_pass http://$NEW_BACKEND;|g" .docker/ingress/ingress.conf
+sed -i "s|proxy_pass http://.*;|proxy_pass http://$NEW_BACKEND:8080;|g" .docker/ingress/ingress.conf
 
 cp .docker/ingress/ingress-staging.conf .docker/ingress/ingress-staging.conf.back
-sed -i "s|proxy_pass http://.*;|proxy_pass http://$CURRENT_BACKEND;|g" .docker/ingress/ingress-staging.conf
+sed -i "s|proxy_pass http://.*;|proxy_pass http://$CURRENT_BACKEND:8080;|g" .docker/ingress/ingress-staging.conf
 
 echo "Check ingress configs are correct"
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.prod-ssl.yml exec -T ingress nginx -g 'daemon off; master_process on;' -t
