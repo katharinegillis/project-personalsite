@@ -9,3 +9,4 @@ services:
   phpfpm:
     volumes:
       - ./html:/var/www/html
+      - ./html:/usr/share/nginx/html
