@@ -13,7 +13,7 @@ touch .env
 } >> .env
 
 # Determine which colour is staging
-if grep -q 'proxy_pass http://green-backend:8080;' .docker/ingress/ingress-staging.conf
+if grep -q 'proxy_pass http://green-backend:8080;' .docker/ingress/conf.d/default-staging.conf
 then
     STAGING="green"
 else
