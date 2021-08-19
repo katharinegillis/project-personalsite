@@ -1,58 +1,17 @@
 version: "3.7"
 
 services:
-  ingress:
-    image: registry.ops.katiecordescodes.com/nginx
-    restart: always
-    volumes:
-      - .docker/ingress/conf.d:/etc/nginx/conf.d
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.personalsite.rule=Host(`${SITE_URL}`)"
-      - "traefik.http.routers.personalsite.entryPoints=web"
-      - "traefik.http.routers.personalsite.service=personalsite"
-      - "traefik.http.services.personalsite.loadbalancer.server.port=8080"
-      - "traefik.http.routers.personalsite-staging.rule=Host(`staging.${SITE_URL}`)"
-      - "traefik.http.routers.personalsite-staging.entryPoints=web"
-      - "traefik.http.routers.personalsite-staging.service=personalsite-staging"
-      - "traefik.http.services.personalsite-staging.loadbalancer.server.port=8080"
-    networks:
-      - traefik
-      - green
-      - blue
-
-  green-backend:
+  entrypoint:
     image: registry.ops.katiecordescodes.com/personalsite-nginx
     restart: always
     environment:
-      PHPFPM: green-phpfpm
+      PHPFPM: phpfpm
     labels:
       - "traefik.enable=false"
-    networks:
-      - green
     depends_on:
-      - green-phpfpm
-  green-phpfpm:
+      - phpfpm
+  phpfpm:
     image: registry.ops.katiecordescodes.com/personalsite-phpfpm
-    networks:
-      - green
-
-  blue-backend:
-    image: registry.ops.katiecordescodes.com/personalsite-nginx
     restart: always
-    environment:
-      PHPFPM: blue-phpfpm
     labels:
       - "traefik.enable=false"
-    networks:
-      - blue
-    depends_on:
-      - blue-phpfpm
-  blue-phpfpm:
-    image: registry.ops.katiecordescodes.com/personalsite-phpfpm
-    networks:
-      - blue
-
-networks:
-  green:
-  blue:

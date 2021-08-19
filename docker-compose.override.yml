@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  nginx:
+  entrypoint:
     build:
       context: .
       dockerfile: .docker/nginx/Dockerfile
@@ -37,3 +37,7 @@ services:
       - default
     volumes:
       - ./html:/var/www/html
+
+networks:
+  traefik:
+    external: true
