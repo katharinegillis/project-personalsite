@@ -20,23 +20,6 @@ services:
       - default
     depends_on:
       - phpfpm
-  phpfpm:
-    build:
-      context: .
-      dockerfile: .docker/phpfpm/Dockerfile
-      target: base
-    environment:
-      SMTP_FROM_EMAIL:
-      SMTP_HOST:
-      SMTP_USER:
-      SMTP_PASSWORD:
-      CONTACT_EMAIL:
-    labels:
-      - "traefik.enable=false"
-    networks:
-      - default
-    volumes:
-      - ./html:/var/www/html
 
 networks:
   traefik:
