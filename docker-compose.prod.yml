@@ -10,8 +10,3 @@ services:
       - "traefik.enable=false"
     depends_on:
       - phpfpm
-  phpfpm:
-    image: registry.ops.katiecordescodes.com/personalsite-phpfpm
-    restart: always
-    labels:
-      - "traefik.enable=false"
