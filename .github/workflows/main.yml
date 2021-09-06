@@ -1,12 +1,11 @@
-name: CI
+name: Deploy to Staging
 
 on:
-  workflow_dispatch:
   push:
     branches: [ main ]
 
 env:
-  DEPLOY_URL: katiecordescodes.com
+  DEPLOY_URL: staging.katiecordescodes.com
   REGISTRY_URL: https://registry.ops.katiecordescodes.com
   APP_ENV: prod
 
@@ -14,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    environment: production
+    environment: staging
 
     steps:
       - uses: actions/checkout@v2
@@ -43,14 +42,6 @@ jobs:
 
       - name: Push image(s)
         run: docker-compose -f docker-compose.build.yml push
-
-      - name: Ensure the deploy path exists on production
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: mkdir -p ${{ secrets.DEPLOY_PATH }}
 
       - name: Create deploy package
         run: chmod +x deploy-package.sh && ./deploy-package.sh
