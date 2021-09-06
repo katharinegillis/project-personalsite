@@ -11,6 +11,7 @@ USER node
 
 RUN yarn install
 
+COPY --chown=node:node public public
 COPY --chown=node:node src src
 
 CMD [ "node", "src/index.js" ]
