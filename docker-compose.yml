@@ -1,1 +1,8 @@
 version: '3.7'
+
+services:
+  entrypoint:
+    image: registry.ops.katiecordescodes.com/personalsite-frontend
+    build:
+      context: .
+      dockerfile: .docker/entrypoint.dockerfile

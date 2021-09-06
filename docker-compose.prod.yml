@@ -2,16 +2,7 @@ version: "3.7"
 
 services:
   entrypoint:
-    image: registry.ops.katiecordescodes.com/personalsite-nginx
-    restart: always
-    environment:
-      PHPFPM: phpfpm
-    labels:
-      - "traefik.enable=false"
-    depends_on:
-      - phpfpm
-  phpfpm:
-    image: registry.ops.katiecordescodes.com/personalsite-phpfpm
+    image: registry.ops.katiecordescodes.com/personalsite-frontend
     restart: always
     labels:
       - "traefik.enable=false"
