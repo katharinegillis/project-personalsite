@@ -1,20 +1,23 @@
 const process = require('process');
+const path = require('path');
 
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const port = 8080;
+
+app.use(express.static(path.join(__dirname, "../public")));
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+  res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
+});
 
 const server = app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+  console.log(`Example app listening at http://localhost:${port}`);
+});
 
 process.on('SIGTERM', () => {
-  debug('SIGTERM signal received: closing HTTP server')
+  debug('SIGTERM signal received: closing HTTP server');
   server.close(() => {
-    debug('HTTP server closed')
-  })
-})
+    debug('HTTP server closed');
+  });
+});
