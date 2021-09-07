@@ -2,6 +2,7 @@ const process = require('process');
 const path = require('path');
 
 const express = require('express');
+const {debug} = require("nodemon");
 const app = express();
 const port = 8080;
 
