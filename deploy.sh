@@ -18,4 +18,5 @@ touch .env
 
 # Update staging
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f "../docker-compose.$STAGING.yml" pull
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f "../docker-compose.$STAGING.yml" up -d
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f "../docker-compose.$STAGING.yml" down
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f "../docker-compose.$STAGING.yml" up -d --remove-orphans
