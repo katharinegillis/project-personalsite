@@ -127,10 +127,12 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          envs: SITE_URL,DEPLOY_PATH
+          envs: SITE_URL,DEPLOY_PATH,UID,GID
           script: |
             export SITE_URL=$SITE_URL
             export DEPLOY_PATH=$DEPLOY_PATH
+            export UID=$UID
+            export GID=$GID
             chmod +x $DEPLOY_PATH/deploy.sh
             cd $DEPLOY_PATH
             $DEPLOY_PATH/deploy.sh
