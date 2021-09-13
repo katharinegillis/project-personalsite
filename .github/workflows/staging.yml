@@ -123,6 +123,8 @@ jobs:
         env:
           SITE_URL: ${{ secrets.DEPLOY_URL }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          UID: ${{ secrets.UID }}
+          GID: ${{ secrets.GID }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
