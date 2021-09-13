@@ -1,4 +1,4 @@
-name: Deploy to Staging
+name: Deploy to Production
 
 # Required secret variables
 # - DISCORD_WEBHOOK
@@ -16,7 +16,7 @@ name: Deploy to Staging
 on:
   push:
     branches:
-      - 'release/**'
+      - main
 
 env:
   DOCKER_COMPOSE_FILES: -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ssl.yml
@@ -24,7 +24,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: staging
+    environment: production
 
     steps:
       - name: Discord build start notification
@@ -32,7 +32,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: "Starting staging build for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
+          args: "Starting production build for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -155,7 +155,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: "Staging build successful for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
+          args: "Production build successful for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
 
   discord:
     needs: build
@@ -171,4 +171,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: "Staging build FAILED for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
+          args: "Production build FAILED for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
