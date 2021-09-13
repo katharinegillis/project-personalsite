@@ -78,7 +78,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          envs: DEPLOY_PATH
+          envs: DEPLOY_PATH,UID,GID
           script: mkdir -p $DEPLOY_PATH && chown -R $UID:$GID $DEPLOY_PATH
 
       - name: Upload the deploy package
