@@ -1,8 +1,11 @@
 #!/bin/bash
 
 # Recreate the .env file
-cp .env.dist .env
-envsubst < .env
+envsubst < .env.dist > .env
+
+PARENT_PWD=${PWD%/*}
+
+echo "COMPOSE_PROJECT_NAME=${PARENT_PWD##*/}-staging" >> .env
 
 # Update instance
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ssl.yml pull
