@@ -1,5 +1,13 @@
 FROM node:14-alpine
 
+ARG UID=1000
+ARG GID=1000
+
+RUN apk --no-cache add shadow
+
+RUN usermod -u $UID node && groupmod -g $GID node
+RUN chown -R node:node /home/node
+
 RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app

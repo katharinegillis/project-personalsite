@@ -1,8 +1,28 @@
 version: '3.7'
 
+# Required environment variables:
+# - UID
+# - GID
+
 services:
-  entrypoint:
+  frontend:
     image: registry.ops.katiecordescodes.com/personalsite-frontend
     build:
       context: .
-      dockerfile: .docker/entrypoint.dockerfile
+      dockerfile: .docker/frontend.dockerfile
+      args:
+        UID: $UID
+        GID: $GID
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.personalsite-frontend.rule=Host(`${SITE_URL}`)"
+      - "traefik.http.routers.personalsite-frontend.entryPoints=web"
+      - "traefik.http.routers.personalsite-frontend.service=personalsite-frontend"
+      - "traefik.http.services.personalsite-frontend.loadbalancer.server.port=8080"
+    networks:
+      - traefik
+      - default
+
+networks:
+  traefik:
+    external: true

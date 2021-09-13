@@ -1,52 +1,85 @@
 name: Deploy to Staging
 
+# Required secret variables
+# - DISCORD_WEBHOOK
+# - REGISTRY_URL
+# - REGISTRY_USERNAME
+# - REGISTRY_PASSWORD
+# - SSH_HOST
+# - SSH_USERNAME
+# - SSH_KEY
+# - DEPLOY_PATH
+# - DEPLOY_URL
+# - UID
+# - GID
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - 'releases/**'
 
 env:
-  DEPLOY_URL: staging.katiecordescodes.com
-  REGISTRY_URL: https://registry.ops.katiecordescodes.com
-  APP_ENV: prod
+  DOCKER_COMPOSE_FILES: -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ssl.yml
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     environment: staging
 
     steps:
-      - uses: actions/checkout@v2
-
       - name: Discord build start notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: "Starting build for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
+          args: "Starting staging build for {{ EVENT_PAYLOAD.repository.full_name }} on branch ${{ github.ref }}"
+
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Fetch docker cache
         uses: satackey/action-docker-layer-caching@v0.0.11
         # Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
 
-      - name: Build image(s)
-        run: docker-compose build
+      - name: Set up .env for building
+        uses: danielr1996/envsubst-action@1.0.0
+        env:
+          SITE_URL: ${{ secrets.DEPLOY_URL }}
+          UID: ${{ secrets.UID }}
+          GID: ${{ secrets.GID }}
+        with:
+          input: .env.dist
+          output: .env
 
-      - name: Log in to private registry for building
+      - name: Build image(s)
+        run: docker-compose ${{ env.DOCKER_COMPOSE_FILES }} build
+
+      - name: Log in to private registry
         uses: docker/login-action@v1
         with:
-          registry: ${{ env.REGISTRY_URL }}
+          registry: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Push image(s)
-        run: docker-compose push
+        run: docker-compose ${{ env.DOCKER_COMPOSE_FILES }} push
 
       - name: Create deploy package
         run: chmod +x deploy-package.sh && ./deploy-package.sh
 
-      - name: Deploy new docker-compose configs and .env setup script to production
+      - name: Ensure deploy path exists
+        uses: appleboy/ssh-action@master
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          envs: DEPLOY_PATH
+          script: mkdir -p $DEPLOY_PATH
+
+      - name: Upload the deploy package
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -72,7 +105,7 @@ jobs:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
           REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-          REGISTRY_URL: ${{ env.REGISTRY_URL }}
+          REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -86,7 +119,7 @@ jobs:
       - name: Deploy the application
         uses: appleboy/ssh-action@master
         env:
-          SITE_URL: ${{ env.DEPLOY_URL }}
+          SITE_URL: ${{ secrets.DEPLOY_URL }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -103,7 +136,7 @@ jobs:
       - name: Log out of the registry on the server
         uses: appleboy/ssh-action@master
         env:
-          REGISTRY_URL: ${{ env.REGISTRY_URL }}
+          REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}

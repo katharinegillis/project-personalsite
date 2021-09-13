@@ -4,5 +4,3 @@ services:
   entrypoint:
     image: registry.ops.katiecordescodes.com/personalsite-frontend
     restart: always
-    labels:
-      - "traefik.enable=false"
