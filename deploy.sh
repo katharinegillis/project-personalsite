@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Recreate the .env file
-cp .env.dist .env
-envsubst < .env
+envsubst < .env.dist > .env
 
 PARENT_PWD=${PWD%/*}
 
