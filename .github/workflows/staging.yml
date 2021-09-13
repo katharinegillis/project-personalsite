@@ -121,20 +121,20 @@ jobs:
         env:
           SITE_URL: ${{ secrets.DEPLOY_URL }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-          UID: ${{ secrets.CONTAINER_UID }}
-          GID: ${{ secrets.CONTAINER_GID }}
+          CONTAINER_UID: ${{ secrets.CONTAINER_UID }}
+          CONTAINER_GID: ${{ secrets.CONTAINER_GID }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           envs: SITE_URL,DEPLOY_PATH,CONTAINER_UID,CONTAINER_GID
           script: |
+            cd $DEPLOY_PATH
             export SITE_URL=$SITE_URL
             export DEPLOY_PATH=$DEPLOY_PATH
             export CONTAINER_UID=$CONTAINER_UID
             export CONTAINER_GID=$CONTAINER_GID
             chmod +x $DEPLOY_PATH/deploy.sh
-            cd $DEPLOY_PATH
             $DEPLOY_PATH/deploy.sh
 
       - name: Log out of the registry on the server
