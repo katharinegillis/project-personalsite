@@ -72,12 +72,14 @@ jobs:
         uses: appleboy/ssh-action@master
         env:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          UID: ${{ secrets.UID }}
+          GID: ${{ secrets.GID }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           envs: DEPLOY_PATH
-          script: mkdir -p $DEPLOY_PATH
+          script: mkdir -p $DEPLOY_PATH && chown -R $UID:$GID $DEPLOY_PATH
 
       - name: Upload the deploy package
         uses: appleboy/scp-action@master
