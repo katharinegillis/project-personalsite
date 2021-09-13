@@ -1,0 +1,15 @@
+version: "3.7"
+
+# Required environment variables:
+# - SITE_URL
+
+services:
+  frontend:
+    labels:
+      - "traefik.http.middlewares.personalsite-frontend-redirect-websecure.redirectscheme.scheme=https"
+      - "traefik.http.routers.personalsite-frontend.middlewares=personalsite-frontend-redirect-websecure"
+      - "traefik.http.routers.personalsite-frontend-secure.rule=Host(`${SITE_URL}`)"
+      - "traefik.http.routers.personalsite-frontend-secure.entryPoints=websecure"
+      - "traefik.http.routers.personalsite-frontend-secure.tls=true"
+      - "traefik.http.routers.personalsite-frontend-secure.tls.certresolver=myresolver"
+      - "traefik.http.routers.personalsite-frontend-secure.service=personalsite-frontend"

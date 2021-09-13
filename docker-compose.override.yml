@@ -1,21 +1,8 @@
 version: '3.7'
 
 services:
-  entrypoint:
+  frontend:
     command: npm run dev
     volumes:
       - ./src:/home/node/app/src
       - ./public:/home/node/app/public
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.personalsite.rule=Host(`${SITE_URL}`)"
-      - "traefik.http.routers.personalsite.entryPoints=web"
-      - "traefik.http.routers.personalsite.service=personalsite"
-      - "traefik.http.services.personalsite.loadbalancer.server.port=8080"
-    networks:
-      - traefik
-      - default
-
-networks:
-  traefik:
-    external: true
