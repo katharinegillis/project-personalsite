@@ -11,8 +11,8 @@ services:
       context: .
       dockerfile: .docker/frontend.dockerfile
       args:
-        UID: $UID
-        GID: $GID
+        CONTAINER_UID: $CONTAINER_UID
+        CONTAINER_GID: $CONTAINER_GID
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.personalsite-frontend.rule=Host(`${SITE_URL}`)"

@@ -10,8 +10,8 @@ name: Deploy to Staging
 # - SSH_KEY
 # - DEPLOY_PATH
 # - DEPLOY_URL
-# - UID
-# - GID
+# - CONTAINER_UID
+# - CONTAINER_GID
 
 on:
   push:
@@ -46,8 +46,8 @@ jobs:
         uses: danielr1996/envsubst-action@1.0.0
         env:
           SITE_URL: ${{ secrets.DEPLOY_URL }}
-          UID: ${{ secrets.UID }}
-          GID: ${{ secrets.GID }}
+          CONTAINER_UID: ${{ secrets.CONTAINER_UID }}
+          CONTAINER_GID: ${{ secrets.CONTAINER_GID }}
         with:
           input: .env.dist
           output: .env
@@ -72,14 +72,14 @@ jobs:
         uses: appleboy/ssh-action@master
         env:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-          UID: ${{ secrets.UID }}
-          GID: ${{ secrets.GID }}
+          CONTAINER_UID: ${{ secrets.CONTAINER_UID }}
+          CONTAINER_GID: ${{ secrets.CONTAINER_GID }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          envs: DEPLOY_PATH,UID,GID
-          script: mkdir -p $DEPLOY_PATH && chown -R $UID:$GID $DEPLOY_PATH
+          envs: DEPLOY_PATH,CONTAINER_UID,CONTAINER_GID
+          script: mkdir -p $DEPLOY_PATH && chown -R $CONTAINER_UID:$CONTAINER_GID $DEPLOY_PATH
 
       - name: Upload the deploy package
         uses: appleboy/scp-action@master
@@ -123,18 +123,18 @@ jobs:
         env:
           SITE_URL: ${{ secrets.DEPLOY_URL }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-          UID: ${{ secrets.UID }}
-          GID: ${{ secrets.GID }}
+          UID: ${{ secrets.CONTAINER_UID }}
+          GID: ${{ secrets.CONTAINER_GID }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          envs: SITE_URL,DEPLOY_PATH,UID,GID
+          envs: SITE_URL,DEPLOY_PATH,CONTAINER_UID,CONTAINER_GID
           script: |
             export SITE_URL=$SITE_URL
             export DEPLOY_PATH=$DEPLOY_PATH
-            export UID=$UID
-            export GID=$GID
+            export CONTAINER_UID=$CONTAINER_UID
+            export CONTAINER_GID=$CONTAINER_GID
             chmod +x $DEPLOY_PATH/deploy.sh
             cd $DEPLOY_PATH
             $DEPLOY_PATH/deploy.sh
