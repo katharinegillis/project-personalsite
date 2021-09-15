@@ -4,7 +4,7 @@
 envsubst < .env.dist > .env
 
 PARENT_PWD=${PWD%/*}
-CURRENT_DIR=${PWD%/*}
+CURRENT_DIR=${PWD##*/}
 
 echo "COMPOSE_PROJECT_NAME=${PARENT_PWD##*/}-${CURRENT_DIR}" >> .env
 
