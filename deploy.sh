@@ -4,8 +4,9 @@
 envsubst < .env.dist > .env
 
 PARENT_PWD=${PWD%/*}
+CURRENT_DIR=${PWD%/*}
 
-echo "COMPOSE_PROJECT_NAME=${PARENT_PWD##*/}-staging" >> .env
+echo "COMPOSE_PROJECT_NAME=${PARENT_PWD##*/}-${CURRENT_DIR}" >> .env
 
 # Update instance
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ssl.yml pull
