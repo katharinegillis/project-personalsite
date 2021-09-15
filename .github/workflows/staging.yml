@@ -12,6 +12,7 @@ name: Deploy to Staging
 # - DEPLOY_URL
 # - CONTAINER_UID
 # - CONTAINER_GID
+# - TRAEFIK_IDENTIFIER
 
 on:
   push:
@@ -48,6 +49,7 @@ jobs:
           SITE_URL: ${{ secrets.DEPLOY_URL }}
           CONTAINER_UID: ${{ secrets.CONTAINER_UID }}
           CONTAINER_GID: ${{ secrets.CONTAINER_GID }}
+          TRAEFIK_IDENTIFIER: ${{ secrets.TRAEFIK_IDENTIFIER }}
         with:
           input: .env.dist
           output: .env
@@ -123,17 +125,19 @@ jobs:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           CONTAINER_UID: ${{ secrets.CONTAINER_UID }}
           CONTAINER_GID: ${{ secrets.CONTAINER_GID }}
+          TRAEFIK_IDENTIFIER: ${{ secrets.TRAEFIK_IDENTIFIER }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          envs: SITE_URL,DEPLOY_PATH,CONTAINER_UID,CONTAINER_GID
+          envs: SITE_URL,DEPLOY_PATH,CONTAINER_UID,CONTAINER_GID,TRAEFIK_IDENTIFIER
           script: |
             cd $DEPLOY_PATH
             export SITE_URL=$SITE_URL
             export DEPLOY_PATH=$DEPLOY_PATH
             export CONTAINER_UID=$CONTAINER_UID
             export CONTAINER_GID=$CONTAINER_GID
+            export TRAEFIK_IDENTIFIER=$TRAEFIK_IDENTIFIER
             chmod +x $DEPLOY_PATH/deploy.sh
             $DEPLOY_PATH/deploy.sh
 
